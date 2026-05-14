@@ -8,24 +8,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="glass-header" id="main-header">
         <nav class="navbar">
             <div class="logo">
+                <img src="logo-cat.png" alt="Cat Logo" class="logo-img">
                 <span class="logo-text">My<span class="text-accent">Website</span></span>
             </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios IA</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#tecnologias">Tecnologías</a></li>
                 <li><a href="#contacto" class="btn-primary">Empezar Ahora</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <section id="wave-intro" class="waves-component">
+            <svg id="waves-svg" class="waves-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div id="pointer-dot" class="pointer-dot"></div>
+            
+            <div class="wave-content">
+                <h1 class="wave-title">Soluciones Digitales &<br><span class="text-accent glow">Automatizamos tu futuro</span></h1>
+            </div>
+        </section>
+
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">El Futuro de tu Empresa impulsado por <span class="text-accent glow">Inteligencia Artificial</span></h1>
@@ -51,19 +62,79 @@
             </div>
             <div class="services-grid">
                 <div class="service-card glassmorphism">
-                    <div class="icon">🧠</div>
-                    <h3>Machine Learning</h3>
-                    <p>Modelos predictivos personalizados para anticipar las tendencias del mercado y optimizar tus decisiones.</p>
-                </div>
-                <div class="service-card glassmorphism">
                     <div class="icon">💬</div>
-                    <h3>Agentes Conversacionales</h3>
-                    <p>Chatbots con procesamiento de lenguaje natural (NLP) para atención al cliente 24/7 y automatización de ventas.</p>
+                    <h3>Agentes IA WhatsApp</h3>
+                    <p>Un asistente inteligente activo 24/7 que atiende a tus clientes con lenguaje natural y humano. Entiende preguntas complejas, recomienda productos, agenda citas y registra datos en tu sistema automáticamente, cerrando ventas mientras tú descansas.</p>
                 </div>
                 <div class="service-card glassmorphism">
-                    <div class="icon">👁️</div>
-                    <h3>Visión Computacional</h3>
-                    <p>Sistemas de análisis de imágenes y video en tiempo real para control de calidad y seguridad.</p>
+                    <div class="icon">🌐</div>
+                    <h3>Desarrollo Web de Élite</h3>
+                    <p>De alto impacto optimizadas para posicionarte en Google, captar clientes y multiplicar tus ventas. No es solo una web atractiva, es un canal automático que convierte visitas en ingresos constantes para tu negocio 24/7.</p>
+                </div>
+                <div class="service-card glassmorphism">
+                    <div class="icon">📊</div>
+                    <h3>Sistemas de Gestión de Inventarios con Análisis Predictivo</h3>
+                    <p>Registra entradas y salidas para prever la demanda según la temporada. Calcula tu stock de seguridad y te muestra mediante gráficos el momento exacto para reponer inventario y no quedarte nunca en cero.</p>
+                </div>
+                <div class="service-card glassmorphism">
+                    <div class="icon">📱</div>
+                    <h3>Sistema de Comandas Digitales</h3>
+                    <p>Reemplaza los blocs de papel por una aplicación móvil para tus meseros. Al tomar el pedido en la mesa, la orden viaja al instante a la cocina: todo queda registrado en caja.</p>
+                </div>
+                <div class="service-card glassmorphism">
+                    <div class="icon">📈</div>
+                    <h3>Agentes IA en Instagram & Facebook</h3>
+                    <p>Transforma tus redes sociales en máquinas de ventas automáticas 24/7. Nuestros agentes inteligentes no solo responden mensajes, sino que califican prospectos y cierran citas en tiempo real sin intervención humana para convertir personas en clientes fieles.</p>
+                </div>
+                <div class="service-card glassmorphism">
+                    <div class="icon">🎨</div>
+                    <h3>Micro-Pack de Contenido IA</h3>
+                    <p>El Micro-Pack de Contenido IA ofrece flyers y videos publicitarios de alto impacto. Este servicio de My WebSyte utiliza inteligencia artificial para entregar diseños premium de forma express. Es la opción ideal para profesionalizar redes sociales con tecnología de vanguardia a un precio competitivo.</p>
+                    <p class="service-price">desde S/60.00 soles</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologias" class="tech-section">
+            <div class="tech-container">
+                <div class="tech-info">
+                    <h2>Nuestro Arsenal <span class="text-accent glow">Tecnológico</span></h2>
+                    <p>Utilizamos las herramientas más potentes del mercado para construir soluciones que no solo funcionan, sino que escalan al ritmo de tu visión.</p>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-item glassmorphism">
+                        <span class="tech-text">n8n</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <span class="tech-text">Make</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <span class="tech-text">Meta<br>Business</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <i class="devicon-html5-plain"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <i class="devicon-css3-plain"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <i class="devicon-javascript-plain"></i>
+                        <span>JS</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <i class="devicon-react-original"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <i class="devicon-nodejs-plain"></i>
+                        <span>Node.js</span>
+                    </div>
+                    <div class="tech-item glassmorphism">
+                        <i class="devicon-vscode-plain"></i>
+                        <span>VS Code</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -86,6 +157,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

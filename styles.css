@@ -4,8 +4,8 @@
     --bg-secondary: #121216;
     
     /* Colores de Acento */
-    --accent-gold: #D4AF37;
-    --accent-gold-hover: #F3E5AB;
+    --accent-gold: #8E2DE2;
+    --accent-gold-hover: #A144F2;
     --text-pure-white: #FFFFFF;
     --text-muted: #A0A0A5;
     
@@ -48,7 +48,7 @@ p {
 }
 
 .glow {
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    text-shadow: 0 0 15px rgba(142, 45, 226, 0.5);
 }
 
 /* Layout y Utilidades */
@@ -90,6 +90,20 @@ a {
     padding: 1.5rem 2rem;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
 .logo-text {
     font-family: var(--font-heading);
     font-size: 1.5rem;
@@ -115,20 +129,20 @@ a {
 
 /* Botones */
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent-gold), #b8901a);
-    color: var(--bg-main) !important;
+    background: linear-gradient(135deg, var(--accent-gold), #651AAB);
+    color: var(--text-pure-white) !important;
     padding: 0.8rem 1.8rem;
     border-radius: 30px;
     font-weight: 600;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 6px 20px rgba(142, 45, 226, 0.5);
     background: linear-gradient(135deg, var(--accent-gold-hover), var(--accent-gold));
 }
 
@@ -145,7 +159,7 @@ a {
 .btn-secondary:hover {
     border-color: var(--accent-gold);
     color: var(--accent-gold) !important;
-    background: rgba(212, 175, 55, 0.05);
+    background: rgba(142, 45, 226, 0.05);
 }
 
 /* Hero Section */
@@ -235,7 +249,7 @@ a {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(142, 45, 226, 0.2);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
@@ -283,7 +297,7 @@ a {
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(212, 175, 55, 0.4);
+    border-color: rgba(142, 45, 226, 0.4);
 }
 
 .service-card .icon {
@@ -294,6 +308,14 @@ a {
 .service-card h3 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
+}
+
+.service-price {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+    text-align: right;
 }
 
 /* Footer */
@@ -369,4 +391,143 @@ a {
         gap: 2rem;
         text-align: center;
     }
+}
+
+/* Wave Background Section */
+.waves-component {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-main);
+    overflow: hidden;
+    --x: 50%;
+    --y: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waves-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.pointer-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    transform: translate3d(calc(var(--x) - 50%), calc(var(--y) - 50%), 0);
+    will-change: transform;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+}
+
+.wave-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    pointer-events: none;
+}
+
+.wave-title {
+    font-size: 4rem;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .wave-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Tecnologías Section */
+.tech-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.tech-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+}
+
+.tech-info {
+    text-align: center;
+    max-width: 700px;
+}
+
+.tech-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 1000px;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+}
+
+.tech-item:hover {
+    transform: translateY(-8px);
+    border-color: rgba(142, 45, 226, 0.6);
+    box-shadow: 0 8px 32px 0 rgba(142, 45, 226, 0.2);
+}
+
+.tech-item i {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-pure-white);
+    transition: color 0.3s ease;
+}
+
+.tech-item:hover i {
+    color: var(--accent-gold);
+}
+
+.tech-item span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.tech-item .tech-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-pure-white);
+    margin: 0;
+    line-height: 1.1;
+    font-family: var(--font-heading);
+}
+
+.tech-item:hover .tech-text, .tech-item:hover span {
+    color: var(--accent-gold);
 }
