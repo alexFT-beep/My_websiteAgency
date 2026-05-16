@@ -653,3 +653,78 @@ a {
 .tech-item:hover .tech-text, .tech-item:hover span {
     color: var(--accent-gold);
 }
+
+/* Legal Pages */
+.legal-page {
+    padding: 120px 20px 60px;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+
+.legal-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 3rem 4rem;
+}
+
+.legal-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.last-updated {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+.legal-intro {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.legal-section {
+    margin-bottom: 40px;
+}
+
+.legal-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.legal-section p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--text-pure-white);
+}
+
+.legal-section ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.legal-section ul li {
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.legal-section ul li::before {
+    content: '•';
+    color: var(--accent-gold);
+    position: absolute;
+    left: -20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .legal-container {
+        padding: 2rem 1.5rem;
+    }
+}
