@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.background = 'rgba(10, 10, 12, 0.95)';
             header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
         } else {
-            header.style.background = 'rgba(10, 10, 12, 0.8)';
+            header.style.background = 'rgba(10, 10, 12, 0.1)';
             header.style.boxShadow = 'none';
         }
     });
