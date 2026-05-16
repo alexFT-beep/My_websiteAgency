@@ -284,10 +284,19 @@ a {
 
 /* Services Section */
 .services {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
+    width: 100%;
+    padding: 8rem 2rem;
     position: relative;
+    background-image: linear-gradient(rgba(10, 10, 12, 0.9), rgba(10, 10, 12, 0.98)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.services > .section-header, .services > .services-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section-header {
@@ -594,6 +603,42 @@ a {
     font-weight: 600;
     text-align: center;
     color: var(--text-muted);
+}
+
+/* Floating WhatsApp */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-gold);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(142, 45, 226, 0.6);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    animation: floating-pulse 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-gold-hover);
+    box-shadow: 0 0 30px rgba(142, 45, 226, 0.9);
+}
+
+@keyframes floating-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(142, 45, 226, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(142, 45, 226, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(142, 45, 226, 0);
+    }
 }
 
 .tech-item .tech-text {
