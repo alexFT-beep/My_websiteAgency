@@ -3,13 +3,11 @@ import { createNoise2D } from 'https://cdn.jsdelivr.net/npm/simplex-noise@4.0.1/
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('main-header');
 
-    // Add scroll effect for header
+    // Add scroll effect for header (Shadow only, keep blur background)
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.background = 'rgba(10, 10, 12, 0.95)';
             header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
         } else {
-            header.style.background = 'rgba(10, 10, 12, 0.1)';
             header.style.boxShadow = 'none';
         }
     });

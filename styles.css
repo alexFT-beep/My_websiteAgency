@@ -532,12 +532,17 @@ a {
 .tech-item i {
     font-size: 3rem;
     margin-bottom: 0.5rem;
-    color: var(--text-pure-white);
     transition: color 0.3s ease;
 }
 
+.tech-html i { color: #E34F26; }
+.tech-css i { color: #1572B6; }
+.tech-js i { color: #F7DF1E; }
+.tech-react i { color: #61DAFB; }
+.tech-node i { color: #339933; }
+
 .tech-item:hover i {
-    color: var(--accent-gold);
+    color: var(--accent-gold) !important;
 }
 
 .tech-item span {
