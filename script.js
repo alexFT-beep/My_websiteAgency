@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('main-header');
 
     // Add scroll effect for header (Shadow only, keep blur background)
+    let isScrolled = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
-        } else {
-            header.style.boxShadow = 'none';
+        const shouldBeScrolled = window.scrollY > 50;
+        if (shouldBeScrolled !== isScrolled) {
+            isScrolled = shouldBeScrolled;
+            header.style.boxShadow = isScrolled ? '0 4px 30px rgba(0, 0, 0, 0.5)' : 'none';
         }
-    });
+    }, { passive: true });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -28,6 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize wave background
     initWaves();
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    if (mobileMenuToggle && hamburger && mobileNav) {
+        mobileMenuToggle.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+    }
 });
 
 function initWaves() {
@@ -109,9 +131,9 @@ function initWaves() {
     }
 
     function updateMousePosition(x, y) {
-        const currentBounding = container.getBoundingClientRect();
-        mouse.x = x - currentBounding.left;
-        mouse.y = y - currentBounding.top;
+        if (!bounding) return;
+        mouse.x = x - bounding.left;
+        mouse.y = y - bounding.top;
 
         if (!mouse.set) {
             mouse.sx = mouse.x; mouse.sy = mouse.y;

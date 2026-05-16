@@ -345,7 +345,7 @@ a {
 
 /* Footer */
 .glass-footer {
-    background-image: linear-gradient(rgba(18, 18, 22, 0.9), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1920&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(18, 18, 22, 0.9), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=70&fm=webp&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     border-top: 1px solid rgba(142, 45, 226, 0.2);
@@ -546,7 +546,7 @@ a {
     width: 100%;
     padding: 6rem 2rem;
     position: relative;
-    background-image: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1531297172867-4b4cbccdd701?q=80&w=1920&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1531297172867-4b4cbccdd701?q=70&fm=webp&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -744,6 +744,116 @@ a {
     }
 }
 
+/* Mobile Navigation */
+.mobile-menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-menu-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-pure-white);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.mobile-arrow {
+    animation: bounce-y 1.5s infinite;
+    display: inline-block;
+}
+
+@keyframes bounce-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--accent-gold);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Active Hamburger (X) */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+    background-color: #b673f8; /* Lighter purple */
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+    background-color: #b673f8; /* Lighter purple */
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(18, 18, 22, 0.98);
+    backdrop-filter: blur(15px);
+    border-left: 1px solid rgba(142, 45, 226, 0.3);
+    padding-top: 100px;
+    transition: right 0.4s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.mobile-nav ul li a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-pure-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav ul li a:hover {
+    color: var(--accent-gold);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none !important;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+
 /* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
@@ -824,7 +934,7 @@ a {
 
 /* Soluciones Page */
 .soluciones-body {
-    background-image: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1920&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=70&fm=webp&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -911,7 +1021,7 @@ a {
 
 /* Form Page */
 .form-page-body {
-    background-image: linear-gradient(rgba(10, 10, 12, 0.8), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1920&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(10, 10, 12, 0.8), rgba(10, 10, 12, 0.95)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=70&fm=webp&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

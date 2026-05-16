@@ -8,23 +8,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"></noscript>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="glass-header" id="main-header">
         <nav class="navbar">
             <a href="index.html" class="logo">
-                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/logo%20principal.webp" alt="Logo Principal" class="logo-img">
+                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/logo%20principal.webp" alt="Logo Principal" class="logo-img" fetchpriority="high" decoding="async">
                 <span class="logo-text">My<span class="text-accent">Website</span></span>
             </a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios IA</a></li>
+                <li><a href="soluciones.html">Servicios IA</a></li>
                 <li><a href="#tecnologias">Tecnologías</a></li>
                 <li><a href="formulario.html" class="btn-primary">Empezar Ahora</a></li>
             </ul>
+
+            <div class="mobile-menu-toggle">
+                <span class="mobile-menu-text">Ver más <span class="mobile-arrow">↓</span></span>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </nav>
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="soluciones.html">Servicios IA</a></li>
+                <li><a href="#tecnologias">Tecnologías</a></li>
+                <li><a href="formulario.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">Empezar Ahora</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
