@@ -763,13 +763,13 @@ a {
 }
 
 .mobile-arrow {
-    animation: bounce-y 1.5s infinite;
+    animation: bounce-x 1.5s infinite;
     display: inline-block;
 }
 
-@keyframes bounce-y {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(4px); }
+@keyframes bounce-x {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
 }
 
 .hamburger {
