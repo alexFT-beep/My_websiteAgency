@@ -228,9 +228,9 @@ function initWaves() {
         rafId = requestAnimationFrame(tick);
     }
 
-    window.addEventListener('resize', onResize);
-    window.addEventListener('mousemove', onMouseMove);
-    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    container.addEventListener('touchmove', onTouchMove, { passive: true });
 
     setSize();
     setLines();
