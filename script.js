@@ -203,7 +203,23 @@ function initWaves() {
         });
     }
 
+    let isVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isVisible = entry.isIntersecting;
+            if (isVisible && !rafId) {
+                rafId = requestAnimationFrame(tick);
+            }
+        });
+    });
+    observer.observe(container);
+
     function tick(time) {
+        if (!isVisible) {
+            rafId = null;
+            return;
+        }
+
         mouse.sx += (mouse.x - mouse.sx) * 0.1;
         mouse.sy += (mouse.y - mouse.sy) * 0.1;
 
@@ -228,7 +244,14 @@ function initWaves() {
         rafId = requestAnimationFrame(tick);
     }
 
-    window.addEventListener('resize', onResize, { passive: true });
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            onResize();
+        }, 150);
+    }, { passive: true });
+    
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     container.addEventListener('touchmove', onTouchMove, { passive: true });
 
