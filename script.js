@@ -50,6 +50,45 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Video Mute Toggle
+    document.querySelectorAll('.mute-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const video = this.previousElementSibling;
+            const iconMuted = this.querySelector('.icon-muted');
+            const iconUnmuted = this.querySelector('.icon-unmuted');
+
+            if (video.muted) {
+                video.muted = false;
+                iconMuted.style.display = 'none';
+                iconUnmuted.style.display = 'block';
+            } else {
+                video.muted = true;
+                iconMuted.style.display = 'block';
+                iconUnmuted.style.display = 'none';
+            }
+        });
+    });
+
+    // Video Lazy Load & Play/Pause Optimization
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                if (video.dataset.src && !video.src) {
+                    video.src = video.dataset.src;
+                    video.load();
+                }
+                video.play().catch(e => console.log('Autoplay prevented', e));
+            } else {
+                video.pause();
+            }
+        });
+    }, { rootMargin: "300px 0px" });
+
+    document.querySelectorAll('.video-wrapper video').forEach(video => {
+        videoObserver.observe(video);
+    });
 });
 
 function initWaves() {
