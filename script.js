@@ -5,11 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add scroll effect for header (Shadow only, keep blur background)
     let isScrolled = false;
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        const shouldBeScrolled = window.scrollY > 50;
-        if (shouldBeScrolled !== isScrolled) {
-            isScrolled = shouldBeScrolled;
-            header.style.boxShadow = isScrolled ? '0 4px 30px rgba(0, 0, 0, 0.5)' : 'none';
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const shouldBeScrolled = window.scrollY > 50;
+                if (shouldBeScrolled !== isScrolled) {
+                    isScrolled = shouldBeScrolled;
+                    header.style.boxShadow = isScrolled ? '0 4px 30px rgba(0, 0, 0, 0.5)' : 'none';
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     }, { passive: true });
 
@@ -51,22 +58,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Video Mute Toggle
-    document.querySelectorAll('.mute-btn').forEach(btn => {
+    // Video Play/Pause Toggle
+    document.querySelectorAll('.play-pause-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const video = this.previousElementSibling;
-            const iconMuted = this.querySelector('.icon-muted');
-            const iconUnmuted = this.querySelector('.icon-unmuted');
+            const iconPlay = this.querySelector('.icon-play');
+            const iconPause = this.querySelector('.icon-pause');
 
-            if (video.muted) {
-                video.muted = false;
-                iconMuted.style.display = 'none';
-                iconUnmuted.style.display = 'block';
+            if (video.paused) {
+                // Pause all other videos
+                document.querySelectorAll('.video-wrapper video').forEach(otherVideo => {
+                    if (otherVideo !== video && !otherVideo.paused) {
+                        otherVideo.pause();
+                        const otherBtn = otherVideo.nextElementSibling;
+                        if (otherBtn && otherBtn.classList.contains('play-pause-btn')) {
+                            otherBtn.querySelector('.icon-pause').style.display = 'none';
+                            otherBtn.querySelector('.icon-play').style.display = 'block';
+                        }
+                    }
+                });
+
+                video.play().catch(e => console.log('Play prevented', e));
+                iconPlay.style.display = 'none';
+                iconPause.style.display = 'block';
             } else {
-                video.muted = true;
-                iconMuted.style.display = 'block';
-                iconUnmuted.style.display = 'none';
+                video.pause();
+                iconPlay.style.display = 'block';
+                iconPause.style.display = 'none';
             }
+        });
+    });
+
+    // Make whole wrapper clickable for video toggle
+    document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+        wrapper.style.cursor = 'pointer';
+        wrapper.addEventListener('click', function(e) {
+            if (e.target.closest('.play-pause-btn')) return; // handled by btn
+            const btn = this.querySelector('.play-pause-btn');
+            if (btn) btn.click();
         });
     });
 
@@ -79,9 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     video.src = video.dataset.src;
                     video.load();
                 }
-                video.play().catch(e => console.log('Autoplay prevented', e));
+                // Removed auto-play, videos stay paused by default
             } else {
                 video.pause();
+                const btn = video.nextElementSibling;
+                if (btn && btn.classList.contains('play-pause-btn')) {
+                    btn.querySelector('.icon-pause').style.display = 'none';
+                    btn.querySelector('.icon-play').style.display = 'block';
+                }
             }
         });
     }, { rootMargin: "300px 0px" });
@@ -197,7 +231,7 @@ function initWaves() {
 
                 const dx = p.x - mouse.sx;
                 const dy = p.y - mouse.sy;
-                const d = Math.hypot(dx, dy);
+                const d = Math.sqrt(dx * dx + dy * dy);
                 const l = Math.max(175, mouse.vs);
 
                 if (d < l) {
