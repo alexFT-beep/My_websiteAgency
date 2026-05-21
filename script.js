@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                video.muted = false; // Ensure audio plays
                 video.play().catch(e => console.log('Play prevented', e));
                 iconPlay.style.display = 'none';
                 iconPause.style.display = 'block';
