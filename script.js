@@ -158,8 +158,8 @@ function initWaves() {
         paths.forEach(p => p.remove());
         paths = [];
         
-        const xGap = 8;
-        const yGap = 8;
+        const xGap = 16;
+        const yGap = 16;
         const oWidth = width + 200;
         const oHeight = height + 30;
         
@@ -220,30 +220,46 @@ function initWaves() {
     }
 
     function movePoints(time) {
-        lines.forEach(points => {
-            points.forEach(p => {
+        const mouseSx = mouse.sx;
+        const mouseSy = mouse.sy;
+        const mouseVs = mouse.vs;
+        const mouseA = mouse.a;
+        const l = Math.max(175, mouseVs);
+        const lSq = l * l;
+        const cosA = Math.cos(mouseA);
+        const sinA = Math.sin(mouseA);
+        const forceMult = l * mouseVs * 0.00035;
+        const fVx = cosA * forceMult;
+        const fVy = sinA * forceMult;
+        const time008_003 = time * 0.008 * 0.003;
+        const time003_002 = time * 0.003 * 0.002;
+
+        for (let i = 0; i < lines.length; i++) {
+            const points = lines[i];
+            for (let j = 0; j < points.length; j++) {
+                const p = points[j];
                 const move = noise2D(
-                    (p.x + time * 0.008) * 0.003,
-                    (p.y + time * 0.003) * 0.002
+                    (p.x * 0.003) + time008_003,
+                    (p.y * 0.002) + time003_002
                 ) * 8;
 
                 p.wave.x = Math.cos(move) * 12;
                 p.wave.y = Math.sin(move) * 6;
 
-                const dx = p.x - mouse.sx;
-                const dy = p.y - mouse.sy;
-                const d = Math.sqrt(dx * dx + dy * dy);
-                const l = Math.max(175, mouse.vs);
+                const dx = p.x - mouseSx;
+                const dy = p.y - mouseSy;
+                const dSq = dx * dx + dy * dy;
 
-                if (d < l) {
+                if (dSq < lSq) {
+                    const d = Math.sqrt(dSq);
                     const s = 1 - d / l;
                     const f = Math.cos(d * 0.001) * s;
-                    p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00035;
-                    p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00035;
+                    p.cursor.vx += f * fVx;
+                    p.cursor.vy += f * fVy;
                 }
 
-                p.cursor.vx += (0 - p.cursor.x) * 0.01;
-                p.cursor.vy += (0 - p.cursor.y) * 0.01;
+                p.cursor.vx += (-p.cursor.x) * 0.01;
+                p.cursor.vy += (-p.cursor.y) * 0.01;
 
                 p.cursor.vx *= 0.95;
                 p.cursor.vy *= 0.95;
@@ -251,10 +267,13 @@ function initWaves() {
                 p.cursor.x += p.cursor.vx;
                 p.cursor.y += p.cursor.vy;
 
-                p.cursor.x = Math.min(50, Math.max(-50, p.cursor.x));
-                p.cursor.y = Math.min(50, Math.max(-50, p.cursor.y));
-            });
-        });
+                if (p.cursor.x > 50) p.cursor.x = 50;
+                else if (p.cursor.x < -50) p.cursor.x = -50;
+
+                if (p.cursor.y > 50) p.cursor.y = 50;
+                else if (p.cursor.y < -50) p.cursor.y = -50;
+            }
+        }
     }
 
     function moved(point, withCursorForce = true) {
@@ -265,16 +284,18 @@ function initWaves() {
     }
 
     function drawLines() {
-        lines.forEach((points, lIndex) => {
-            if (points.length < 2 || !paths[lIndex]) return;
+        for (let lIndex = 0; lIndex < lines.length; lIndex++) {
+            const points = lines[lIndex];
+            if (points.length < 2 || !paths[lIndex]) continue;
+            
             const firstPoint = moved(points[0], false);
             let d = `M ${firstPoint.x} ${firstPoint.y}`;
             for (let i = 1; i < points.length; i++) {
                 const current = moved(points[i]);
-                d += `L ${current.x} ${current.y}`;
+                d += ` L ${current.x} ${current.y}`;
             }
             paths[lIndex].setAttribute('d', d);
-        });
+        }
     }
 
     let isVisible = true;
