@@ -371,10 +371,45 @@ a {
     margin-bottom: 1rem;
 }
 
+.services-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-content-wrapper {
+    flex: 2;
+}
+
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+}
+
+.services-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(142, 45, 226, 0.4));
+}
+
+@media (max-width: 992px) {
+    .services-layout {
+        flex-direction: column;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
 }
 
 .service-card {
@@ -487,15 +522,19 @@ a {
 
 /* Footer */
 .glass-footer {
-    background-image: linear-gradient(rgba(18, 18, 22, 0.4), rgba(10, 10, 12, 0.65)), url('https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/Footer7.webp');
-    background-size: cover;
-    background-position: center;
+    background-image: linear-gradient(rgba(18, 18, 22, 0.8), rgba(10, 10, 12, 0.95));
     border-top: 1px solid rgba(142, 45, 226, 0.2);
     padding: 4rem 2rem 2rem;
     margin-top: 4rem;
     position: relative;
     content-visibility: auto;
     contain-intrinsic-size: 300px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .footer-content {
@@ -688,19 +727,48 @@ a {
 .wave-content {
     position: relative;
     z-index: 3;
-    text-align: center;
+    text-align: left;
     pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.wave-image {
+    width: 280px;
+    max-width: 100%;
 }
 
 .wave-title {
     font-size: 4rem;
     line-height: 1.2;
     font-weight: 800;
+    margin: 0;
+}
+
+@media (max-width: 992px) {
+    .wave-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .wave-title {
+        text-align: center;
+    }
 }
 
 @media (max-width: 768px) {
     .wave-title {
         font-size: 2.5rem;
+    }
+    
+    .wave-image {
+        width: 200px;
     }
 }
 
