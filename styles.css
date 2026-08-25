@@ -147,7 +147,7 @@ a {
 }
 
 .nav-links a {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 
@@ -691,6 +691,18 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.waves-component::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, var(--neon-purple) 0%, transparent 60%);
+    filter: blur(100px);
+    z-index: -1;
 }
 
 .waves-component::after {
