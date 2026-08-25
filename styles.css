@@ -684,7 +684,7 @@ a {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-color: var(--bg-main);
+    background-color: transparent;
     overflow: hidden;
     --x: 50%;
     --y: 50%;
@@ -702,7 +702,7 @@ a {
     height: 50vw;
     background: radial-gradient(circle, var(--neon-purple) 0%, transparent 60%);
     filter: blur(100px);
-    z-index: -1;
+    z-index: 0;
 }
 
 .waves-component::after {
@@ -1132,7 +1132,7 @@ a {
 }
 
 .mobile-nav ul li a {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--text-pure-white);
     text-decoration: none;
@@ -1151,6 +1151,19 @@ a {
     .mobile-menu-toggle {
         display: flex;
     }
+}
+
+.mobile-nav-img-container {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-nav-img {
+    width: 160px;
+    opacity: 0.9;
 }
 
 /* Scroll Indicator */
