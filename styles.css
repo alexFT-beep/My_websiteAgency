@@ -561,8 +561,16 @@ a {
 
 .footer-logo {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.footer-logo-img {
+    width: 250px;
+    height: auto;
+    max-width: 100%;
+    mix-blend-mode: screen;
 }
 
 .footer-content {
@@ -699,6 +707,10 @@ a {
         flex-direction: column;
         gap: 2rem;
         text-align: center;
+    }
+    
+    .footer-logo {
+        align-items: center;
     }
 }
 
