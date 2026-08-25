@@ -138,6 +138,12 @@ a {
     display: flex;
     align-items: center;
     gap: 2rem;
+    margin: 0 auto;
+}
+
+.nav-inicio {
+    color: #00c3ff !important;
+    text-shadow: 0 0 10px rgba(0, 195, 255, 0.6);
 }
 
 .nav-links a {
@@ -1380,4 +1386,14 @@ a {
     .form-container {
         padding: 2rem 1.5rem;
     }
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }
