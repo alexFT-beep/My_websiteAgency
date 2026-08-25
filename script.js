@@ -44,8 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileMenuToggle && hamburger && mobileNav) {
         mobileMenuToggle.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+            const isActive = hamburger.classList.toggle('active');
             mobileNav.classList.toggle('active');
+            
+            const menuText = mobileMenuToggle.querySelector('.mobile-menu-text');
+            if (menuText) {
+                menuText.innerHTML = isActive ? 'Cerrar' : 'Ver menú <span class="mobile-arrow">→</span>';
+            }
         });
 
         // Close menu when a link is clicked
@@ -54,6 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileNav.classList.remove('active');
+                
+                const menuText = mobileMenuToggle.querySelector('.mobile-menu-text');
+                if (menuText) {
+                    menuText.innerHTML = 'Ver menú <span class="mobile-arrow">→</span>';
+                }
             });
         });
     }
