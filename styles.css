@@ -408,6 +408,29 @@ a {
     filter: drop-shadow(0 10px 20px rgba(142, 45, 226, 0.4));
 }
 
+.speech-bubble {
+    position: absolute;
+    top: 10%;
+    right: -20px;
+    background: linear-gradient(135deg, var(--neon-purple), var(--accent-gold));
+    color: var(--text-pure-white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    border-bottom-left-radius: 2px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    box-shadow: 0 5px 20px rgba(142, 45, 226, 0.6);
+    z-index: 2;
+    animation: bubble-pop 2s infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes bubble-pop {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.08) translateY(-5px); }
+}
+
 @media (max-width: 992px) {
     .services-layout {
         flex-direction: column;
