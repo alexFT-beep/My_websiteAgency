@@ -196,8 +196,58 @@ function initFAQ() {
         });
     }
 
+    // Advanced Text Normalization & Flexible Search Helper
+    const STOP_WORDS = new Set(['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'de', 'del', 'en', 'para', 'por', 'con', 'sin', 'mi', 'tu', 'su', 'que', 'se', 'y', 'o', 'a', 'es', 'son', 'un']);
+
+    function normalizeText(text) {
+        if (!text) return '';
+        return text
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") // removes accents: á->a, é->e, ñ->n, ü->u
+            .replace(/[^a-z0-9]/g, " ")     // replace punctuation, commas, symbols with spaces
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    function getWordStem(word) {
+        if (word.length <= 3) return word;
+        if (word.endsWith('es') && word.length > 4) return word.slice(0, -2);
+        if (word.endsWith('s') && !word.endsWith('ss')) return word.slice(0, -1);
+        return word;
+    }
+
+    function isTermMatch(term, targetNormalizedText, targetStems) {
+        if (!term) return true;
+        
+        // 1. Direct substring match (e.g. "precio" in "precios")
+        if (targetNormalizedText.includes(term)) return true;
+
+        // 2. Stem match (e.g. term "precios" -> stem "precio" matches target "precio")
+        const termStem = getWordStem(term);
+        if (termStem.length >= 3 && targetNormalizedText.includes(termStem)) return true;
+
+        // 3. Reverse stem match (e.g. term stem matches any target word stem)
+        if (termStem.length >= 3 && targetStems.some(stem => stem === termStem || stem.startsWith(termStem) || termStem.startsWith(stem))) {
+            return true;
+        }
+
+        return false;
+    }
+
     function filterFAQ(category, query) {
         let visibleCount = 0;
+
+        const normalizedQuery = normalizeText(query);
+        let queryTerms = normalizedQuery ? normalizedQuery.split(' ').filter(Boolean) : [];
+
+        // Remove stop words if user typed more than one word
+        if (queryTerms.length > 1) {
+            const filteredTerms = queryTerms.filter(t => !STOP_WORDS.has(t));
+            if (filteredTerms.length > 0) {
+                queryTerms = filteredTerms;
+            }
+        }
 
         categoryHeaders.forEach(header => {
             const headerCat = header.dataset.category;
@@ -207,11 +257,21 @@ function initFAQ() {
             let categoryVisibleItems = 0;
 
             categoryItems.forEach(item => {
-                const questionText = item.querySelector('.faq-question-text')?.textContent.toLowerCase() || '';
-                const answerText = item.querySelector('.faq-answer-inner')?.textContent.toLowerCase() || '';
+                const questionRaw = item.querySelector('.faq-question-text')?.textContent || '';
+                const answerRaw = item.querySelector('.faq-answer-inner')?.textContent || '';
+                const badgeRaw = item.querySelector('.faq-cat-badge')?.textContent || '';
                 
                 const matchesCategory = (category === 'all' || category === headerCat);
-                const matchesSearch = !query || questionText.includes(query) || answerText.includes(query);
+
+                let matchesSearch = true;
+                if (queryTerms.length > 0) {
+                    const fullTargetText = normalizeText(`${questionRaw} ${answerRaw} ${badgeRaw}`);
+                    const targetWords = fullTargetText.split(' ').filter(Boolean);
+                    const targetStems = targetWords.map(getWordStem);
+
+                    // Check if EVERY query term matches target text (smart multi-word matching)
+                    matchesSearch = queryTerms.every(term => isTermMatch(term, fullTargetText, targetStems));
+                }
 
                 if (matchesCategory && matchesSearch) {
                     item.style.display = 'block';
