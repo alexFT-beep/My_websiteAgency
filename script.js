@@ -134,7 +134,106 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.video-wrapper video').forEach(video => {
         videoObserver.observe(video);
     });
+
+    // Initialize FAQ interaction
+    initFAQ();
 });
+
+function initFAQ() {
+    const faqContainer = document.querySelector('.faq-content-container');
+    if (!faqContainer) return;
+
+    const accordionBtns = document.querySelectorAll('.faq-question-btn');
+    const tabBtns = document.querySelectorAll('.faq-tab-btn');
+    const searchInput = document.getElementById('faq-search-input');
+    const searchClearBtn = document.getElementById('faq-search-clear');
+    const categoryHeaders = document.querySelectorAll('.faq-category-header');
+    const noResults = document.querySelector('.faq-no-results');
+
+    // Accordion Toggle
+    accordionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            if (!item) return;
+
+            const isOpen = item.classList.contains('active');
+            item.classList.toggle('active', !isOpen);
+        });
+    });
+
+    // Category Tabs Filtering
+    tabBtns.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabBtns.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const category = tab.dataset.category;
+            filterFAQ(category, searchInput ? searchInput.value.trim().toLowerCase() : '');
+        });
+    });
+
+    // Search Filtering
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            if (searchClearBtn) {
+                searchClearBtn.style.display = query.length > 0 ? 'flex' : 'none';
+            }
+            const activeTab = document.querySelector('.faq-tab-btn.active');
+            const category = activeTab ? activeTab.dataset.category : 'all';
+            filterFAQ(category, query);
+        });
+    }
+
+    if (searchClearBtn && searchInput) {
+        searchClearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchClearBtn.style.display = 'none';
+            searchInput.focus();
+            const activeTab = document.querySelector('.faq-tab-btn.active');
+            const category = activeTab ? activeTab.dataset.category : 'all';
+            filterFAQ(category, '');
+        });
+    }
+
+    function filterFAQ(category, query) {
+        let visibleCount = 0;
+
+        categoryHeaders.forEach(header => {
+            const headerCat = header.dataset.category;
+            const isCatMatch = (category === 'all' || category === headerCat);
+            
+            const categoryItems = document.querySelectorAll(`.faq-item[data-category="${headerCat}"]`);
+            let categoryVisibleItems = 0;
+
+            categoryItems.forEach(item => {
+                const questionText = item.querySelector('.faq-question-text')?.textContent.toLowerCase() || '';
+                const answerText = item.querySelector('.faq-answer-inner')?.textContent.toLowerCase() || '';
+                
+                const matchesCategory = (category === 'all' || category === headerCat);
+                const matchesSearch = !query || questionText.includes(query) || answerText.includes(query);
+
+                if (matchesCategory && matchesSearch) {
+                    item.style.display = 'block';
+                    categoryVisibleItems++;
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (isCatMatch && categoryVisibleItems > 0) {
+                header.style.display = 'flex';
+            } else {
+                header.style.display = 'none';
+            }
+        });
+
+        if (noResults) {
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+}
 
 function initWaves() {
     const container = document.getElementById('wave-intro');
