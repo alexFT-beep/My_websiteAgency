@@ -2056,45 +2056,45 @@ a {
     text-align: center;
 }
 
-/* Status Badge */
-.about-status-badge {
+/* Status Badge Morado Neón */
+.about-badge-purple {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(30, 215, 96, 0.12);
-    border: 1px solid rgba(30, 215, 96, 0.35);
-    color: #1ED760;
-    padding: 6px 16px;
+    background: rgba(176, 38, 255, 0.12);
+    border: 1px solid rgba(176, 38, 255, 0.45);
+    color: #e2a6ff;
+    padding: 7px 18px;
     border-radius: 30px;
     font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 1.8rem;
-    box-shadow: 0 0 15px rgba(30, 215, 96, 0.2);
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.3);
     backdrop-filter: blur(10px);
+    margin-top: 0.4rem;
 }
 
-.about-status-dot {
+.about-badge-dot-purple {
     width: 9px;
     height: 9px;
-    background-color: #1ED760;
+    background-color: #b026ff;
     border-radius: 50%;
-    box-shadow: 0 0 10px #1ED760;
-    animation: status-pulse 1.8s infinite ease-in-out;
+    box-shadow: 0 0 10px #b026ff;
+    animation: status-pulse-purple 1.8s infinite ease-in-out;
 }
 
-@keyframes status-pulse {
+@keyframes status-pulse-purple {
     0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.7);
+        box-shadow: 0 0 0 0 rgba(176, 38, 255, 0.7);
     }
     70% {
         transform: scale(1.15);
-        box-shadow: 0 0 0 8px rgba(30, 215, 96, 0);
+        box-shadow: 0 0 0 8px rgba(176, 38, 255, 0);
     }
     100% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(30, 215, 96, 0);
+        box-shadow: 0 0 0 0 rgba(176, 38, 255, 0);
     }
 }
 
@@ -2105,9 +2105,9 @@ a {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
-    padding: 3rem 2.5rem;
+    padding: 3rem 2.8rem;
     width: 100%;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(142, 45, 226, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(142, 45, 226, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2121,35 +2121,51 @@ a {
     top: -50%;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 123, 0, 0.18) 0%, rgba(142, 45, 226, 0.15) 50%, transparent 80%);
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(176, 38, 255, 0.2) 0%, rgba(0, 229, 255, 0.15) 50%, transparent 80%);
     filter: blur(40px);
     pointer-events: none;
+}
+
+/* Profile Header (Avatar on Left, Text on Right) */
+.about-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.about-info-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 /* Avatar Frame */
 .about-avatar-container {
     position: relative;
-    margin-bottom: 1.8rem;
+    flex-shrink: 0;
 }
 
 .about-avatar-frame {
-    width: 130px;
-    height: 130px;
+    width: 145px;
+    height: 145px;
     border-radius: 50%;
     padding: 4px;
-    background: linear-gradient(135deg, #FF7B00, #8E2DE2, #00C3FF);
-    box-shadow: 0 0 25px rgba(255, 123, 0, 0.35), 0 0 40px rgba(142, 45, 226, 0.25);
+    background: linear-gradient(135deg, #00e5ff, #b026ff, #8E2DE2);
+    box-shadow: 0 0 30px rgba(176, 38, 255, 0.4), 0 0 45px rgba(0, 229, 255, 0.3);
     animation: border-glow 6s infinite alternate ease-in-out;
 }
 
 @keyframes border-glow {
     0% {
-        box-shadow: 0 0 25px rgba(255, 123, 0, 0.35), 0 0 40px rgba(142, 45, 226, 0.25);
+        box-shadow: 0 0 25px rgba(176, 38, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.3);
     }
     100% {
-        box-shadow: 0 0 35px rgba(0, 195, 255, 0.45), 0 0 50px rgba(255, 123, 0, 0.35);
+        box-shadow: 0 0 35px rgba(0, 229, 255, 0.5), 0 0 50px rgba(176, 38, 255, 0.4);
     }
 }
 
@@ -2168,7 +2184,7 @@ a {
     font-weight: 800;
     color: var(--text-pure-white);
     letter-spacing: -0.5px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     font-family: var(--font-heading);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
@@ -2176,18 +2192,19 @@ a {
 .about-sub-title1 {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #FF7B00; /* Naranja de énfasis */
-    margin-bottom: 0.5rem;
+    color: #b026ff; /* Morado Neón */
+    margin-bottom: 0.4rem;
     letter-spacing: 0.3px;
-    text-shadow: 0 0 12px rgba(255, 123, 0, 0.3);
+    text-shadow: 0 0 14px rgba(176, 38, 255, 0.6);
 }
 
 .about-sub-title2 {
     font-size: 1.05rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: #00e5ff; /* Azul Neón */
     margin-bottom: 0.6rem;
     letter-spacing: 0.2px;
+    text-shadow: 0 0 14px rgba(0, 229, 255, 0.5);
 }
 
 .about-sub-title3 {
@@ -2354,9 +2371,9 @@ a {
 
 .about-contact-link:hover {
     transform: translateY(-6px) scale(1.1);
-    background: linear-gradient(135deg, rgba(255, 123, 0, 0.25), rgba(142, 45, 226, 0.35));
-    border-color: #FF7B00;
-    box-shadow: 0 10px 25px rgba(255, 123, 0, 0.4), 0 0 15px rgba(142, 45, 226, 0.4);
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.25), rgba(176, 38, 255, 0.35));
+    border-color: #b026ff;
+    box-shadow: 0 10px 25px rgba(176, 38, 255, 0.4), 0 0 15px rgba(0, 229, 255, 0.4);
     color: #FFFFFF;
 }
 
@@ -2375,9 +2392,19 @@ a {
         border-radius: 20px;
     }
 
+    .about-profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .about-info-content {
+        align-items: center;
+    }
+
     .about-avatar-frame {
-        width: 110px;
-        height: 110px;
+        width: 120px;
+        height: 120px;
     }
 
     .about-founder-name {
@@ -2390,10 +2417,6 @@ a {
 
     .about-sub-title2 {
         font-size: 0.95rem;
-    }
-
-    .about-sub-title3 {
-        font-size: 0.88rem;
     }
 
     .tech-logo-card {
