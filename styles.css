@@ -2100,10 +2100,14 @@ a {
 
 /* Profile Visual Card */
 .about-profile-card {
-    background: rgba(18, 18, 24, 0.65);
+    background: linear-gradient(135deg, rgba(14, 14, 20, 0.85), rgba(10, 10, 16, 0.90)), 
+                url('https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/fotoTarjeta.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 28px;
     padding: 3rem 2.8rem;
     width: 100%;
@@ -2113,6 +2117,17 @@ a {
     align-items: center;
     position: relative;
     overflow: hidden;
+}
+
+/* Background image for Desktop, Laptops, and Tablets */
+@media (min-width: 769px) {
+    .about-profile-card {
+        background: linear-gradient(135deg, rgba(14, 14, 20, 0.85), rgba(10, 10, 16, 0.90)), 
+                    url('https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/fototarjeta_cuadrado.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 }
 
 .about-profile-card::before {
