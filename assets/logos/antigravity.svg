@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="48" height="48">
+  <rect width="128" height="128" rx="24" fill="#0A0A10"/>
+  <circle cx="64" cy="64" r="46" fill="none" stroke="url(#ag-ring)" stroke-width="4"/>
+  <circle cx="64" cy="64" r="28" fill="none" stroke="#8E2DE2" stroke-width="3" stroke-dasharray="8 6"/>
+  <polygon points="64,26 88,88 64,74 40,88" fill="url(#ag-core)"/>
+  <circle cx="64" cy="64" r="8" fill="#00C3FF"/>
+  <defs>
+    <linearGradient id="ag-ring" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8E2DE2"/>
+      <stop offset="0.5" stop-color="#00C3FF"/>
+      <stop offset="1" stop-color="#FF7B00"/>
+    </linearGradient>
+    <linearGradient id="ag-core" x1="64" y1="26" x2="64" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00C3FF"/>
+      <stop offset="1" stop-color="#8E2DE2"/>
+    </linearGradient>
+  </defs>
+</svg>
