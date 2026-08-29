@@ -565,6 +565,20 @@ a {
     gap: 1rem;
 }
 
+.footer-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.footer-slogan {
+    font-size: 0.82rem;
+    color: var(--text-pure-white);
+    margin-top: 0.35rem;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
 .footer-logo-img {
     width: 250px;
     height: auto;
