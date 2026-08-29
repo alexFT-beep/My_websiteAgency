@@ -2618,6 +2618,13 @@ a {
     -webkit-text-fill-color: transparent;
 }
 
+.text-gradient-brand {
+    background: linear-gradient(135deg, #00e5ff 0%, #b026ff 50%, #ff007f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(176, 38, 255, 0.35));
+}
+
 .about-badge-green {
     display: inline-flex;
     align-items: center;
