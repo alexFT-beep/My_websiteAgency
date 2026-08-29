@@ -352,10 +352,7 @@ a {
     width: 100%;
     padding: 8rem 2rem;
     position: relative;
-    background-image: linear-gradient(rgba(10, 10, 12, 0.35), rgba(10, 10, 12, 0.5)), url('https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/FondoServciios.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: transparent;
     content-visibility: auto;
     contain-intrinsic-size: 1000px;
 }
@@ -1321,7 +1318,11 @@ a {
 
 /* Soluciones Page */
 .soluciones-body {
-    background-color: transparent;
+    background-color: var(--bg-main);
+    background-image: linear-gradient(rgba(10, 10, 12, 0.35), rgba(10, 10, 12, 0.5)), url('https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/FondoServciios.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     min-height: 100vh;
 }
 
