@@ -523,3 +523,42 @@ function initWaves() {
     setLines();
     rafId = requestAnimationFrame(tick);
 }
+
+// Form Submission Handler for WhatsApp and Lead Submission
+document.addEventListener('DOMContentLoaded', () => {
+    const projectForm = document.getElementById('project-form');
+    if (projectForm) {
+        projectForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre')?.value.trim() || '';
+            const correo = document.getElementById('correo')?.value.trim() || document.getElementById('email')?.value.trim() || '';
+            const telefono = document.getElementById('telefono')?.value.trim() || '';
+            const ciudad = document.getElementById('ciudad')?.value.trim() || document.getElementById('empresa')?.value.trim() || '';
+            const servicio = document.getElementById('servicio')?.value || document.getElementById('servicio_interes')?.value || '';
+            const descripcion = document.getElementById('descripcion')?.value.trim() || document.getElementById('mensaje')?.value.trim() || '';
+
+            const mensaje = `🚀 *NUEVA SOLICITUD DE PROYECTO — MYWEBSITE*
+
+Hola equipo de *MyWebsite*, solicito información y cotización para el siguiente requerimiento:
+
+👤 *DATOS DEL CLIENTE:*
+• *Nombre:* ${nombre}
+• *Teléfono / WhatsApp:* ${telefono}
+• *Correo:* ${correo}
+• *Ubicación / Negocio:* ${ciudad}
+
+💼 *SERVICIO REQUERIDO:*
+• *Solución:* ${servicio}
+
+📝 *DETALLES DEL PROYECTO:*
+"${descripcion}"
+
+---
+_Mensaje generado automáticamente desde el formulario oficial de MyWebsite_`;
+
+            const url = `https://api.whatsapp.com/send/?phone=51900957415&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+            window.open(url, '_blank');
+        });
+    }
+});

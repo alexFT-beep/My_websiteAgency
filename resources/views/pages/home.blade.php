@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<main>
     <section id="inicio" class="waves-component">
         <video class="mobile-bg-video" autoplay loop muted playsinline>
             <source
@@ -16,7 +17,8 @@
             <div class="wave-text-wrapper">
                 <h1 class="wave-title">Soluciones Digitales &<br><span class="text-accent glow">Automatizamos tu futuro</span></h1>
                 <div class="wave-actions" style="margin-top: 2rem;">
-                    <a href="{{ route('formulario') }}" class="btn-primary"
+                    <a href="https://api.whatsapp.com/send/?phone=51900957415&text=Hola+MyWebsite%21+deseo+hacer+una+consulta.&type=phone_number&app_absent=0"
+                        target="_blank" class="btn-primary"
                         style="pointer-events: auto; display: inline-flex; align-items: center; gap: 8px;">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                             <path
@@ -75,8 +77,8 @@
                     </div>
                     <div class="service-card glassmorphism">
                         <div class="icon">📱</div>
-                        <h3>Carta Digital Interactiva</h3>
-                        <p>La Carta Digital Interactiva transforma el menú de tu restaurante en una experiencia moderna y visual mediante código QR e link. Este servicio de MyWebSite integra un diseño web responsivo. Es la opción ideal para optimizar la atención al cliente, destacar tus platos principales o pedir deliverys de manera interactiva.</p>
+                        <h3>Carta digital interactiva</h3>
+                        <p>La Carta Digital Interactiva transforma el menú de tu restaurante en una experiencia moderna y visual mediante código QR e link. Este servicio de MyWebSite integra un diseño web responsivo. Es la opción ideal para optimizar la atención al cliente, destacar tus platos principales o pedir deliverys de manera interactiva</p>
                     </div>
                 </div>
             </div>
@@ -89,4 +91,5 @@
             </div>
         </div>
     </section>
+</main>
 @endsection
