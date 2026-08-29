@@ -68,73 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Video Play/Pause Toggle
-    document.querySelectorAll('.play-pause-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const video = this.previousElementSibling;
-            const iconPlay = this.querySelector('.icon-play');
-            const iconPause = this.querySelector('.icon-pause');
-
-            if (video.paused) {
-                // Pause all other videos
-                document.querySelectorAll('.video-wrapper video').forEach(otherVideo => {
-                    if (otherVideo !== video && !otherVideo.paused) {
-                        otherVideo.pause();
-                        const otherBtn = otherVideo.nextElementSibling;
-                        if (otherBtn && otherBtn.classList.contains('play-pause-btn')) {
-                            otherBtn.querySelector('.icon-pause').style.display = 'none';
-                            otherBtn.querySelector('.icon-play').style.display = 'block';
-                        }
-                    }
-                });
-
-                video.muted = false; // Ensure audio plays
-                video.play().catch(e => console.log('Play prevented', e));
-                iconPlay.style.display = 'none';
-                iconPause.style.display = 'block';
-            } else {
-                video.pause();
-                iconPlay.style.display = 'block';
-                iconPause.style.display = 'none';
-            }
-        });
-    });
-
-    // Make whole wrapper clickable for video toggle
-    document.querySelectorAll('.video-wrapper').forEach(wrapper => {
-        wrapper.style.cursor = 'pointer';
-        wrapper.addEventListener('click', function(e) {
-            if (e.target.closest('.play-pause-btn')) return; // handled by btn
-            const btn = this.querySelector('.play-pause-btn');
-            if (btn) btn.click();
-        });
-    });
-
-    // Video Lazy Load & Play/Pause Optimization
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-                if (video.dataset.src && !video.src) {
-                    video.src = video.dataset.src;
-                    video.load();
-                }
-                // Removed auto-play, videos stay paused by default
-            } else {
-                video.pause();
-                const btn = video.nextElementSibling;
-                if (btn && btn.classList.contains('play-pause-btn')) {
-                    btn.querySelector('.icon-pause').style.display = 'none';
-                    btn.querySelector('.icon-play').style.display = 'block';
-                }
-            }
-        });
-    }, { rootMargin: "300px 0px" });
-
-    document.querySelectorAll('.video-wrapper video').forEach(video => {
-        videoObserver.observe(video);
-    });
-
     // Initialize FAQ interaction
     initFAQ();
 });
@@ -296,7 +229,7 @@ function initFAQ() {
 }
 
 function initWaves() {
-    const container = document.getElementById('wave-intro');
+    const container = document.querySelector('.waves-component') || document.getElementById('wave-intro');
     const svg = document.getElementById('waves-svg');
     if (!container || !svg) return;
 
