@@ -400,26 +400,28 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 }
 
 .services-image img {
-    max-width: 100%;
+    max-width: 210px;
+    width: 100%;
     height: auto;
     filter: drop-shadow(0 10px 20px rgba(142, 45, 226, 0.4));
 }
 
 .speech-bubble {
     position: absolute;
-    top: 10%;
-    right: -20px;
+    top: 5%;
+    right: -15px;
     background: linear-gradient(135deg, var(--neon-purple), var(--accent-gold));
     color: var(--text-pure-white);
-    padding: 0.8rem 1.5rem;
+    padding: 0.5rem 1.1rem;
     border-radius: 30px;
     border-bottom-left-radius: 2px;
     font-weight: 800;
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.05rem;
     box-shadow: 0 5px 20px rgba(142, 45, 226, 0.6);
     z-index: 2;
     animation: bubble-pop 2s infinite alternate;
