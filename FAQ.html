@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes (FAQ) | MyWebsite - Agencia de IA & Software Studio</title>
+    <meta name="description"
+        content="Resuelve todas tus dudas sobre Agentes de IA, Desarrollo Web, Carta Digital, Precios, Soporte y Automatización para restaurantes y negocios locales con MyWebsite.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://wdirdbryxwtbnprbrkvh.supabase.co" crossorigin>
+    <link rel="dns-prefetch" href="https://wdirdbryxwtbnprbrkvh.supabase.co">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="faq-page-body">
+
+    <!-- Header / Navbar -->
+    <header class="glass-header" id="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/logo%20principal.webp"
+                    alt="Logo Principal" class="logo-img" fetchpriority="high" decoding="async" width="40" height="40">
+                <span class="logo-text">My<span class="text-accent">Website</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="soluciones.html" class="pulse-link">Servicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="FAQ.html" class="nav-inicio underline-link">FAQ</a></li>
+                <li><a href="formulario.html" class="btn-primary">Empezar Ahora</a></li>
+            </ul>
+
+            <div class="mobile-menu-toggle">
+                <span class="mobile-menu-text">Ver menú <span class="mobile-arrow">&rarr;</span></span>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer Navigation -->
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="soluciones.html" class="pulse-link">Servicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="FAQ.html" class="nav-inicio underline-link">FAQ</a></li>
+                <li><a href="formulario.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">Empezar
+                        Ahora</a></li>
+            </ul>
+            <div class="mobile-nav-img-container">
+                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/logoAcostado.webp"
+                    alt="Logo MyWebsite" class="mobile-nav-img floating">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section FAQ -->
+        <section class="faq-hero-container">
+            <div class="faq-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Centro de Ayuda & Respuestas
+            </div>
+            <h1 class="faq-main-title">
+                Preguntas <span class="text-accent glow">Frecuentes</span>
+            </h1>
+            <p class="faq-subtitle">
+                Respuestas claras y detalladas sobre nuestras soluciones digitales, Agentes de IA, cartas digitales,
+                procesos de desarrollo, soporte y precios para restaurantes.
+            </p>
+
+            <!-- Live Search Bar -->
+            <div class="faq-search-wrapper">
+                <input type="text" id="faq-search-input" class="faq-search-input"
+                    placeholder="Busca una duda (ej. precios, IA, carta digital, soporte)..."
+                    aria-label="Buscar en preguntas frecuentes">
+                <svg class="faq-search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <button type="button" id="faq-search-clear" class="faq-search-clear"
+                    aria-label="Limpiar búsqueda">&times;</button>
+            </div>
+        </section>
+
+        <!-- Category Tabs Filter -->
+        <section class="faq-tabs-wrapper">
+            <div class="faq-tabs-container" role="tablist">
+                <button type="button" class="faq-tab-btn active" data-category="all" role="tab" aria-selected="true">
+                    <span>✨ Todas</span>
+                    <span class="badge-count">26</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="general" role="tab" aria-selected="false">
+                    <span>🚀 General</span>
+                    <span class="badge-count">6</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="precios" role="tab" aria-selected="false">
+                    <span>💰 Precios</span>
+                    <span class="badge-count">3</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="ia" role="tab" aria-selected="false">
+                    <span>🤖 IA & Automatización</span>
+                    <span class="badge-count">4</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="desarrollo" role="tab" aria-selected="false">
+                    <span>💻 Desarrollo</span>
+                    <span class="badge-count">4</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="web" role="tab" aria-selected="false">
+                    <span>📱 Web & Carta Digital</span>
+                    <span class="badge-count">3</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="soporte" role="tab" aria-selected="false">
+                    <span>🛠️ Soporte</span>
+                    <span class="badge-count">4</span>
+                </button>
+                <button type="button" class="faq-tab-btn" data-category="seguridad" role="tab" aria-selected="false">
+                    <span>🔒 Seguridad</span>
+                    <span class="badge-count">2</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- FAQ Accordion List by Categories -->
+        <section class="faq-content-container">
+
+            <!-- CATEGORIA 1: GENERAL -->
+            <div class="faq-category-header" data-category="general">
+                <span class="category-icon">🚀</span>
+                <h2>General</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="general">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">01.</span>
+                            <span class="faq-question-text">¿Por qué debería contratar a MyWebsite y no simplemente
+                                contratar una página web?</span>
+                        </div>
+                        <span class="faq-cat-badge">General</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            En MyWebsite no solo diseñamos páginas atractivas; creamos un ecosistema digital integral
+                            (web + cartas digitales + agentes de IA + automatizaciones). Una web tradicional es solo una
+                            vitrina pasiva, mientras que nuestras soluciones están optimizadas para convertir visitas en
+                            clientes reales, automatizar la atención 24/7 y reducir la carga operativa de tu negocio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="general">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">02.</span>
+                            <span class="faq-question-text">No sé qué solución necesita mi restaurante, ¿qué
+                                hago?</span>
+                        </div>
+                        <span class="faq-cat-badge">General</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            ¡No te preocupes! Ofrecemos un diagnóstico inicial personalizado totalmente gratuito.
+                            Analizamos tu flujo de atención, canales de ventas actuales y cuellos de botella operativos
+                            para recomendarte la solución exacta que brindará el mayor retorno de inversión a tu
+                            restaurante.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="general">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">03.</span>
+                            <span class="faq-question-text">¿Cómo empiezo?</span>
+                        </div>
+                        <span class="faq-cat-badge">General</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            El proceso es muy sencillo: solo debes hacer clic en nuestro botón de contacto o llenar
+                            nuestro formulario inicial. Coordinaremos una breve llamada o conversación por WhatsApp para
+                            conocer tu negocio, proponerte un plan a medida y ponernos a trabajar de inmediato.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="general">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">04.</span>
+                            <span class="faq-question-text">¿Cómo sé si realmente necesito una solución digital?</span>
+                        </div>
+                        <span class="faq-cat-badge">General</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Si pierdes ventas por demoras al responder WhatsApp/redes, tu equipo pierde tiempo tomando
+                            pedidos manualmente, cometes errores en comandas o no tienes visibilidad de tus clientes y
+                            menú en línea, entonces una solución digital automatizada transformará radicalmente tu
+                            facturación y eficiencia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="general">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">05.</span>
+                            <span class="faq-question-text">¿Pueden ayudarme si mi restaurante recién está
+                                comenzando?</span>
+                        </div>
+                        <span class="faq-cat-badge">General</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            ¡Absolutamente! Acompañamos a restaurantes nuevos para que inicien con el pie derecho.
+                            Implementar herramientas digitales desde el primer día evita vicios operativos, construye
+                            una presencia de marca sólida y te permite competir de igual a igual con grandes cadenas
+                            desde la apertura.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="general">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">06.</span>
+                            <span class="faq-question-text">¿Me garantizan que voy a vender más?</span>
+                        </div>
+                        <span class="faq-cat-badge">General</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Nuestras herramientas están diseñadas para maximizar tus oportunidades de venta eliminando
+                            tiempos muertos de respuesta, mostrando tus platos de forma irresistiblemente interactiva y
+                            captando clientes 24/7. Aunque el volumen de ventas depende también de la calidad de tu
+                            producto y servicio, garantizamos la infraestructura tecnológica para maximizar la
+                            conversión de tus prospectos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 2: PRECIOS -->
+            <div class="faq-category-header" data-category="precios">
+                <span class="category-icon">💰</span>
+                <h2>Precios</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="precios">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">07.</span>
+                            <span class="faq-question-text">¿Cuánto cuesta una solución digital para mi
+                                restaurante?</span>
+                        </div>
+                        <span class="faq-cat-badge">Precios</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Contamos con planes y soluciones modulares adaptadas al tamaño y necesidad de cada
+                            restaurante, desde cartas digitales e implementaciones de agentes IA hasta plataformas
+                            integradas completas. Te brindamos una cotización transparente y personalizada sin sorpresas
+                            ni costos ocultos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="precios">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">08.</span>
+                            <span class="faq-question-text">¿Tengo que pagar una mensualidad?</span>
+                        </div>
+                        <span class="faq-cat-badge">Precios</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Depende del servicio contratado. Para desarrollos web a medida el pago puede ser único. Para
+                            servicios como agentes de IA activo 24/7 o mantenimiento de servidores, existe un plan de
+                            suscripción accesible que garantiza la actualización, estabilidad y disponibilidad continua
+                            de tu sistema.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="precios">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">09.</span>
+                            <span class="faq-question-text">¿Hay costos adicionales después de contratar?</span>
+                        </div>
+                        <span class="faq-cat-badge">Precios</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Cero sorpresas. Todos los costos del proyecto se especifican claramente en la propuesta
+                            antes de iniciar. Solo existirán costos adicionales si decides solicitar nuevas
+                            funcionalidades fuera del alcance acordado originalmente.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 3: IA & AUTOMATIZACION -->
+            <div class="faq-category-header" data-category="ia">
+                <span class="category-icon">🤖</span>
+                <h2>IA & Automatización</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="ia">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">10.</span>
+                            <span class="faq-question-text">¿Qué puede hacer un agente de IA para mi restaurante?</span>
+                        </div>
+                        <span class="faq-cat-badge">IA & Automatización</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Tu agente de IA puede atender chats de WhatsApp, Instagram y Facebook 24/7 de forma humana y
+                            natural: responder preguntas frecuentes, mostrar la carta digital, recomendar platos
+                            estrella, agendar reservas, derivar pedidos y capturar datos de prospectos en tiempo real.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="ia">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">11.</span>
+                            <span class="faq-question-text">¿El agente de IA puede responder fuera del horario de
+                                atención?</span>
+                        </div>
+                        <span class="faq-cat-badge">IA & Automatización</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            ¡Sí! Esa es su principal fortaleza. El agente opera los 365 días del año, las 24 horas del
+                            día. Si un cliente escribe a las 2 a.m. para consultar el menú o hacer una reserva para el
+                            fin de semana, la IA le responderá de inmediato.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="ia">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">12.</span>
+                            <span class="faq-question-text">¿La IA puede cometer errores?</span>
+                        </div>
+                        <span class="faq-cat-badge">IA & Automatización</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Configuramos y entrenamos la IA con bases de conocimiento estrictas basadas en la
+                            información exacta de tu restaurante. Además, implementamos límites para que, si surge una
+                            duda muy específica o inusual, el agente derive sutilmente la conversación a un operador
+                            humano.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="ia">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">13.</span>
+                            <span class="faq-question-text">¿La IA reemplazará a mis trabajadores?</span>
+                        </div>
+                        <span class="faq-cat-badge">IA & Automatización</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            No. La IA no reemplaza a tu personal, sino que se convierte en su mejor asistente. Libera a
+                            tu equipo de tareas mecánicas y repetitivas (como enviar el PDF del menú 50 veces al día)
+                            para que puedan enfocarse en brindar una atención presencial extraordinaria y preparar la
+                            comida con calidad.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 4: DESARROLLO -->
+            <div class="faq-category-header" data-category="desarrollo">
+                <span class="category-icon">💻</span>
+                <h2>Desarrollo</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="desarrollo">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">14.</span>
+                            <span class="faq-question-text">¿Las soluciones son personalizadas para mi
+                                restaurante?</span>
+                        </div>
+                        <span class="faq-cat-badge">Desarrollo</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Sí, al 100%. No usamos plantillas genéricas. Cada desarrollo, diseño, flujo de atención y
+                            respuestas de la IA se adaptan a la identidad visual, valores, menú y procesos operativos
+                            específicos de tu negocio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="desarrollo">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">15.</span>
+                            <span class="faq-question-text">¿Pueden desarrollar algo que no aparece entre sus
+                                servicios?</span>
+                        </div>
+                        <span class="faq-cat-badge">Desarrollo</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            ¡Por supuesto! Como software studio con experiencia en desarrollo a medida, podemos
+                            construir soluciones personalizadas para cualquier requerimiento particular que requiera tu
+                            restaurante o empresa.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="desarrollo">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">16.</span>
+                            <span class="faq-question-text">¿Pueden integrar la solución con mis sistemas
+                                actuales?</span>
+                        </div>
+                        <span class="faq-cat-badge">Desarrollo</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Sí, evaluamos la factibilidad técnica e integraciones vía API con tus sistemas actuales
+                            (POS, sistemas de caja, Google Sheets, CRMs o herramientas de facturación) para que todo
+                            funcione como una sola maquinaria sintonizada.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="desarrollo">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">17.</span>
+                            <span class="faq-question-text">¿Necesito cambiar todo mi sistema actual para trabajar con
+                                ustedes?</span>
+                        </div>
+                        <span class="faq-cat-badge">Desarrollo</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            No es necesario. Nuestras soluciones están diseñadas para complementarse armónicamente con
+                            tus herramientas existentes sin interrumpir la operativa diaria de tu establecimiento.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 5: WEB & CARTA DIGITAL -->
+            <div class="faq-category-header" data-category="web">
+                <span class="category-icon">📱</span>
+                <h2>Web & Carta Digital</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="web">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">18.</span>
+                            <span class="faq-question-text">¿Solo hacen páginas web?</span>
+                        </div>
+                        <span class="faq-cat-badge">Web & Carta Digital</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            No. Nos especializamos en la transformación digital integral para restaurantes: Agentes de
+                            IA en canales de mensajería, Cartas Digitales Interactivas QR, Sistemas de Comandas, Control
+                            de Inventario Predictivo y Desarrollos de Software a medida.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="web">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">19.</span>
+                            <span class="faq-question-text">¿Mi página web funcionará desde celulares?</span>
+                        </div>
+                        <span class="faq-cat-badge">Web & Carta Digital</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Garantizado. Todas nuestras soluciones se desarrollan bajo un enfoque <em>Mobile-First</em>,
+                            optimizadas para cargar velozmente y verse impecables en cualquier smartphone, tablet o
+                            computadora de escritorio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="web">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">20.</span>
+                            <span class="faq-question-text">¿Puedo actualizar mi carta o información después?</span>
+                        </div>
+                        <span class="faq-cat-badge">Web & Carta Digital</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Por ahora no contamos con esa tecnologia que otorga una interfaz para que puedas
+                            cambiar/actualizar datos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 6: SOPORTE -->
+            <div class="faq-category-header" data-category="soporte">
+                <span class="category-icon">🛠️</span>
+                <h2>Soporte</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="soporte">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">21.</span>
+                            <span class="faq-question-text">¿Cuánto demora desarrollar mi proyecto?</span>
+                        </div>
+                        <span class="faq-cat-badge">Soporte</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Los tiempos varían según la complejidad. Una carta digital o agente de IA básico puede estar
+                            listo en pocos días (3 a 7 días hábiles), mientras que sistemas web o integraciones
+                            complejas toman entre 2 y 4 semanas. Te entregamos un cronograma claro desde el día 1.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="soporte">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">22.</span>
+                            <span class="faq-question-text">¿Ustedes se encargan de implementar todo?</span>
+                        </div>
+                        <span class="faq-cat-badge">Soporte</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Sí, brindamos un servicio llave en mano (<em>turnkey</em>). Nosotros realizamos la
+                            configuración, diseño, programación, pruebas y puesta en marcha para que tú no tengas que
+                            preocuparte por nada técnico.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="soporte">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">23.</span>
+                            <span class="faq-question-text">¿Ofrecen soporte después de entregar el proyecto?</span>
+                        </div>
+                        <span class="faq-cat-badge">Soporte</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Totalmente. No te dejamos solo tras el lanzamiento. Ofrecemos planes de soporte continuo,
+                            monitoreo, copias de seguridad y asistencia técnica para garantizar que tu sistema opere al
+                            100% todo el tiempo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="soporte">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">24.</span>
+                            <span class="faq-question-text">¿Qué pasa si necesito cambios después de terminar el
+                                proyecto?</span>
+                        </div>
+                        <span class="faq-cat-badge">Soporte</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Contamos con planes de mantenimiento y horas de desarrollo donde podemos aplicar
+                            actualizaciones, añadir nuevos platos, modificar flujos o expandir las capacidades de tu
+                            plataforma cuando lo requieras.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 7: SEGURIDAD -->
+            <div class="faq-category-header" data-category="seguridad">
+                <span class="category-icon">🔒</span>
+                <h2>Seguridad</h2>
+            </div>
+            <div class="faq-accordion-list">
+                <div class="faq-item glassmorphism" data-category="seguridad">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">25.</span>
+                            <span class="faq-question-text">¿Mis datos y los de mis clientes estarán seguros?</span>
+                        </div>
+                        <span class="faq-cat-badge">Seguridad</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            La seguridad es nuestra prioridad. Implementamos protocolos de encriptación SSL,
+                            almacenamiento seguro en la nube y buenas prácticas de protección de datos para garantizar
+                            la privacidad de tu negocio y la de tus clientes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item glassmorphism" data-category="seguridad">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                        <div class="faq-question-content">
+                            <span class="faq-q-number">26.</span>
+                            <span class="faq-question-text">¿Quién es dueño del sistema que desarrollan?</span>
+                        </div>
+                        <span class="faq-cat-badge">Seguridad</span>
+                        <div class="faq-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Tú eres el único dueño de tu información, contenido y código desarrollado para tu marca. Una
+                            vez finalizado y liquidado el proyecto, la propiedad intelectual de la solución te pertenece
+                            por completo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No search results state -->
+            <div class="faq-no-results">
+                <span class="faq-no-results-icon">🔍</span>
+                <h3>No se encontraron preguntas</h3>
+                <p>Intenta con otros términos de búsqueda o selecciona una categoría diferente.</p>
+            </div>
+
+        </section>
+
+        <!-- CTA Card Highlighted at Bottom -->
+        <section style="padding: 0 1.5rem;">
+            <div class="faq-cta-card glassmorphism">
+                <div class="faq-cta-content">
+                    <div class="faq-cta-icon-wrapper">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="faq-cta-title">¿No encuentras la respuesta que buscas?</h2>
+                    <p class="faq-cta-desc">Contáctanos y respondemos directamente a tus inquietudes de forma
+                        personalizada.</p>
+                    <a href="https://api.whatsapp.com/send/?phone=51900957415&text=Hola%21+MyWebsite%2C+tengo+una+pregunta+que+no+encontr%C3%A9+en+el+FAQ.&type=phone_number&app_absent=0"
+                        target="_blank" class="btn-primary btn-cta-aquí">
+                        AQUÍ
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-footer" id="contacto">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/LogoMW_color.webp"
+                    alt="Logo MyWebsite" style="width: 70px; height: auto; mix-blend-mode: screen;">
+                <div>
+                    <span class="logo-text">My<span class="text-accent">Website</span></span>
+                    <p class="footer-desc">Agencia de Innovación Digital & Soluciones Tecnológicas</p>
+                    <p class="footer-slogan">Soluciones Digitales &<br><span class="text-accent">Automatizamos tu futuro</span></p>
+                </div>
+            </div>
+            <div class="footer-socials">
+                <h4>Contáctanos</h4>
+                <div class="social-links">
+                    <a href="https://api.whatsapp.com/send/?phone=51900957415&text=Hola+MyWebsite%21+deseo+hacer+una+consulta.&type=phone_number&app_absent=0"
+                        target="_blank" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-gold)">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                        </svg>
+                        <span>+51 900957415</span>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579462595383" target="_blank"
+                        class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-gold)">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/mywebsitee/" target="_blank" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-gold)">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="politica.html" class="legal-link">Política de Privacidad</a>
+                <a href="terminos.html" class="legal-link">Términos de Servicio</a>
+                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/LogoHechado.webp"
+                    alt="Logo MyWebsite" class="footer-logo-img floating" style="margin-top: 1rem;">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MyWebsite. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send/?phone=51900957415&text=Hola+MyWebsite%21+deseo+hacer+una+consulta.&type=phone_number&app_absent=0"
+        target="_blank" class="floating-whatsapp" aria-label="Contacto por WhatsApp">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="#ffffff">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
