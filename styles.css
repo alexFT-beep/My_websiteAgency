@@ -737,8 +737,29 @@ a {
 }
 
 .wave-image {
-    width: 280px;
+    width: 320px;
+    height: auto;
     max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 30px rgba(142, 45, 226, 0.45));
+    flex-shrink: 0;
+}
+
+.soluciones-closing-img,
+.form-hero-img {
+    width: 220px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+@media (min-width: 993px) {
+    .wave-image {
+        width: 340px;
+        height: auto;
+        max-height: 480px;
+        object-fit: contain;
+    }
 }
 
 .wave-title {
@@ -753,6 +774,12 @@ a {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
+    }
+    
+    .wave-image {
+        width: 260px;
+        height: auto;
+        margin: 0 auto;
     }
     
     .wave-title {
