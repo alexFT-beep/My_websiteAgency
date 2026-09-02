@@ -2497,3 +2497,359 @@ a {
     box-shadow: 0 8px 25px rgba(249, 115, 22, 0.6);
     background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
 }
+
+/* ==========================================================================
+   FASE 2, 3, 4: OPTIMIZACIONES DE UI/UX, ANIMACIONES, RESPONSIVIDAD Y ERRORES
+   ========================================================================== */
+
+/* 1. SCROLL REVEAL ANIMATIONS (Performance first with GPU acceleration) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* 2. HERO ENTRANCE ANIMATIONS (Fade-in + Slide-up without LCP penalty) */
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-animate-title {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate-subtitle {
+    opacity: 0;
+    animation: heroFadeUp 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate-actions {
+    opacity: 0;
+    animation: heroFadeUp 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate-image {
+    opacity: 0;
+    animation: heroFadeIn 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. MICROINTERACCIONES & ESTADOS ACCESIBLES (Hover, Focus-Visible, Press feedback) */
+button, 
+.btn-primary, 
+.btn-secondary, 
+.social-icon, 
+.legal-link, 
+.faq-tab-btn, 
+.faq-question-btn, 
+.team-switcher-btn, 
+.mobile-menu-toggle {
+    touch-action: manipulation;
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.team-switcher-btn:active,
+.btn-portfolio-ramses:active {
+    transform: scale(0.96) translateY(0) !important;
+    transition: transform 0.1s ease !important;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-gold) !important;
+    outline-offset: 4px !important;
+    border-radius: 4px;
+}
+
+.service-card,
+.solucion-item,
+.faq-item,
+.glassmorphism {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 8. LOADING SKELETON LOADERS (Shimmer Effect) */
+.skeleton {
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0.03) 25%, 
+        rgba(255, 255, 255, 0.09) 50%, 
+        rgba(255, 255, 255, 0.03) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite ease-in-out;
+    border-radius: 8px;
+    display: block;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.skeleton-title {
+    height: 1.8rem;
+    margin-bottom: 1rem;
+    width: 60%;
+}
+
+.skeleton-box {
+    width: 100%;
+    height: 180px;
+}
+
+/* 13. FORMULARIO E INPUT VALIDATION STATES */
+.custom-form .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.custom-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-pure-white);
+}
+
+.custom-form input,
+.custom-form select,
+.custom-form textarea {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: var(--text-pure-white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.custom-form input:focus,
+.custom-form select:focus,
+.custom-form textarea:focus {
+    border-color: var(--accent-gold);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 15px rgba(142, 45, 226, 0.35);
+}
+
+.custom-form input.is-valid,
+.custom-form select.is-valid,
+.custom-form textarea.is-valid {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.custom-form input.is-invalid,
+.custom-form select.is-invalid,
+.custom-form textarea.is-invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.3) !important;
+}
+
+.field-msg {
+    font-size: 0.82rem;
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.field-msg.error-msg {
+    color: #f87171;
+}
+
+.field-msg.success-msg {
+    color: #34d399;
+}
+
+/* Toast Notifications System */
+.toast-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    min-width: 280px;
+    max-width: 380px;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    background: rgba(18, 18, 22, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.92rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.toast.show {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.toast.toast-success {
+    border-left: 4px solid #10b981;
+}
+
+.toast.toast-error {
+    border-left: 4px solid #ef4444;
+}
+
+/* 14. ERROR PAGES (404 & 500) STYLING */
+.error-page-body {
+    background-color: var(--bg-main);
+    color: var(--text-pure-white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.error-container-wrapper {
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 1.5rem 4rem;
+}
+
+.error-card {
+    max-width: 580px;
+    width: 100%;
+    text-align: center;
+    padding: 3.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.error-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(142, 45, 226, 0.4);
+    background: rgba(142, 45, 226, 0.1);
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
+}
+
+.error-title {
+    font-size: 5rem;
+    line-height: 1;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.error-subtitle {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.error-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 2.2rem;
+    line-height: 1.6;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* RESPONSIVE TOUCH & BREAKPOINT AUDITS (320px - 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.25rem;
+    }
+
+    .mobile-nav ul li a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .error-title {
+        font-size: 4rem;
+    }
+
+    .error-card {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .toast-container {
+        left: 15px;
+        right: 15px;
+        bottom: 20px;
+    }
+
+    .toast {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title, .wave-title {
+        font-size: 2.1rem;
+    }
+
+    .custom-form input,
+    .custom-form select,
+    .custom-form textarea {
+        font-size: 16px; /* Prevents auto-zoom on iOS safari */
+    }
+}
+

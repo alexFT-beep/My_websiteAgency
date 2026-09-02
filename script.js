@@ -34,43 +34,260 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize wave background
+    // Initialize modules
     initWaves();
+    initFAQ();
+    initScrollReveal();
+    initFormValidation();
+    initGlobalErrorHandling();
+    initSkeletons();
 
-    // Mobile menu toggle
+    // Mobile menu toggle with accessibility & body scroll lock
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
 
     if (mobileMenuToggle && hamburger && mobileNav) {
-        mobileMenuToggle.addEventListener('click', () => {
-            const isActive = hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+
+        const toggleMenu = (show) => {
+            const isActive = show !== undefined ? show : hamburger.classList.toggle('active');
+            if (show !== undefined) {
+                hamburger.classList.toggle('active', isActive);
+            }
+            mobileNav.classList.toggle('active', isActive);
+            mobileMenuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            document.body.style.overflow = isActive ? 'hidden' : '';
             
             const menuText = mobileMenuToggle.querySelector('.mobile-menu-text');
             if (menuText) {
                 menuText.innerHTML = isActive ? 'Cerrar' : 'Ver menú <span class="mobile-arrow">→</span>';
             }
-        });
+        };
+
+        mobileMenuToggle.addEventListener('click', () => toggleMenu());
 
         // Close menu when a link is clicked
         const mobileLinks = mobileNav.querySelectorAll('a');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                
-                const menuText = mobileMenuToggle.querySelector('.mobile-menu-text');
-                if (menuText) {
-                    menuText.innerHTML = 'Ver menú <span class="mobile-arrow">→</span>';
-                }
-            });
+            link.addEventListener('click', () => toggleMenu(false));
         });
     }
-
-    // Initialize FAQ interaction
-    initFAQ();
 });
+
+// Toast notification helper
+export function showToast(message, type = 'info', duration = 3500) {
+    let container = document.querySelector('.toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+    toast.innerHTML = `<span style="font-weight:bold; font-size:1.1rem; color:${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#00c3ff'}">${icon}</span> <span>${message}</span>`;
+    
+    container.appendChild(toast);
+    
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
+// 1. Scroll Reveal Observer
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealElements.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Unobserve once animated for optimal performance
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+}
+
+// 8. Skeleton Loaders Handler
+function initSkeletons() {
+    const skeletons = document.querySelectorAll('.skeleton');
+    if (!skeletons.length) return;
+
+    // Simulate resource hydration / image load complete
+    window.addEventListener('load', () => {
+        skeletons.forEach(sk => sk.classList.remove('skeleton'));
+    });
+}
+
+// 13. Form Interactive Real-time Validation
+function initFormValidation() {
+    const form = document.getElementById('project-form');
+    if (!form) return;
+
+    const fields = {
+        nombre: {
+            element: document.getElementById('nombre'),
+            validate: val => val.trim().length >= 3,
+            errorMsg: 'Ingresa al menos 3 caracteres en tu nombre.'
+        },
+        correo: {
+            element: document.getElementById('correo'),
+            validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()),
+            errorMsg: 'Ingresa un correo electrónico válido.'
+        },
+        telefono: {
+            element: document.getElementById('telefono'),
+            validate: val => /^[0-9]{8,15}$/.test(val.trim()),
+            errorMsg: 'Ingresa un número telefónico válido (8 a 15 dígitos).'
+        },
+        ciudad: {
+            element: document.getElementById('ciudad'),
+            validate: val => val.trim().length >= 2,
+            errorMsg: 'Ingresa tu ciudad o país.'
+        },
+        servicio: {
+            element: document.getElementById('servicio'),
+            validate: val => val && val.length > 0,
+            errorMsg: 'Selecciona un servicio de la lista.'
+        },
+        descripcion: {
+            element: document.getElementById('descripcion'),
+            validate: val => val.trim().length >= 10,
+            errorMsg: 'Explícanos tu requerimiento en al menos 10 caracteres.'
+        }
+    };
+
+    // Attach real-time validation events to each input field
+    Object.keys(fields).forEach(key => {
+        const field = fields[key];
+        if (!field.element) return;
+
+        const parent = field.element.closest('.form-group') || field.element.parentElement;
+        let msgEl = parent.querySelector('.field-msg');
+        if (!msgEl) {
+            msgEl = document.createElement('div');
+            msgEl.className = 'field-msg';
+            parent.appendChild(msgEl);
+        }
+
+        const validateField = () => {
+            const val = field.element.value;
+            if (!val && !field.element.classList.contains('is-invalid') && !field.element.classList.contains('is-valid')) {
+                // Empty untouched field
+                return true;
+            }
+
+            const isValid = field.validate(val);
+            if (isValid) {
+                field.element.classList.remove('is-invalid');
+                field.element.classList.add('is-valid');
+                msgEl.className = 'field-msg success-msg';
+                msgEl.textContent = '✓ Correcto';
+            } else {
+                field.element.classList.remove('is-valid');
+                field.element.classList.add('is-invalid');
+                msgEl.className = 'field-msg error-msg';
+                msgEl.textContent = `✕ ${field.errorMsg}`;
+            }
+            return isValid;
+        };
+
+        field.element.addEventListener('input', validateField);
+        field.element.addEventListener('blur', validateField);
+    });
+
+    // Handle Submit
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let isFormValid = true;
+        Object.keys(fields).forEach(key => {
+            const field = fields[key];
+            if (!field.element) return;
+            const parent = field.element.closest('.form-group') || field.element.parentElement;
+            let msgEl = parent.querySelector('.field-msg');
+
+            const isValid = field.validate(field.element.value);
+            if (!isValid) {
+                isFormValid = false;
+                field.element.classList.remove('is-valid');
+                field.element.classList.add('is-invalid');
+                if (msgEl) {
+                    msgEl.className = 'field-msg error-msg';
+                    msgEl.textContent = `✕ ${field.errorMsg}`;
+                }
+            } else {
+                field.element.classList.remove('is-invalid');
+                field.element.classList.add('is-valid');
+            }
+        });
+
+        if (!isFormValid) {
+            showToast('Por favor corrige los campos indicados antes de enviar.', 'error');
+            return;
+        }
+
+        showToast('¡Datos validados correctamente! Redirigiendo a WhatsApp...', 'success');
+
+        const nombre = fields.nombre.element.value.trim();
+        const correo = fields.correo.element.value.trim();
+        const telefono = fields.telefono.element.value.trim();
+        const ciudad = fields.ciudad.element.value.trim();
+        const servicio = fields.servicio.element.value;
+        const descripcion = fields.descripcion.element.value.trim();
+
+        const mensaje = `🚀 *NUEVA SOLICITUD DE PROYECTO — MYWEBSITE*
+
+Hola equipo de *MyWebsite*, solicito información y cotización para el siguiente requerimiento:
+
+👤 *DATOS DEL CLIENTE:*
+• *Nombre:* ${nombre}
+• *Teléfono / WhatsApp:* ${telefono}
+• *Correo:* ${correo}
+• *Ubicación:* ${ciudad}
+
+💼 *SERVICIO REQUERIDO:*
+• *Solución:* ${servicio}
+
+📝 *DETALLES DEL PROYECTO:*
+"${descripcion}"
+
+---
+_Mensaje generado automáticamente desde el formulario oficial de MyWebsite_`;
+
+        const url = `https://api.whatsapp.com/send/?phone=51900957415&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+        
+        setTimeout(() => {
+            window.open(url, '_blank');
+        }, 800);
+    });
+}
+
+// 14. Global JS Error Exception Listener
+function initGlobalErrorHandling() {
+    window.addEventListener('error', (event) => {
+        console.error('[MyWebsite Exception caught]:', event.error || event.message);
+    });
+
+    window.addEventListener('unhandledrejection', (event) => {
+        console.error('[MyWebsite Unhandled Promise Rejection]:', event.reason);
+    });
+}
+
 
 function initFAQ() {
     const faqContainer = document.querySelector('.faq-content-container');
