@@ -524,9 +524,22 @@ function initWaves() {
     }
 
     function updateMousePosition(x, y) {
-        if (!bounding) return;
+        bounding = container.getBoundingClientRect();
         mouse.x = x - bounding.left;
         mouse.y = y - bounding.top;
+
+        const isInside = (
+            mouse.x >= 0 &&
+            mouse.x <= bounding.width &&
+            mouse.y >= 0 &&
+            mouse.y <= bounding.height
+        );
+
+        if (isInside) {
+            container.style.setProperty('--pointer-opacity', '1');
+        } else {
+            container.style.setProperty('--pointer-opacity', '0');
+        }
 
         if (!mouse.set) {
             mouse.sx = mouse.x; mouse.sy = mouse.y;
@@ -668,6 +681,18 @@ function initWaves() {
     
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     container.addEventListener('touchmove', onTouchMove, { passive: true });
+    
+    window.addEventListener('scroll', () => {
+        if (container) {
+            bounding = container.getBoundingClientRect();
+        }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+        if (container) {
+            container.style.setProperty('--pointer-opacity', '0');
+        }
+    }, { passive: true });
 
     setSize();
     setLines();
