@@ -716,10 +716,12 @@ a {
     background: var(--neon-blue);
     border-radius: 50%;
     transform: translate3d(calc(var(--x) - 50%), calc(var(--y) - 50%), 0);
-    will-change: transform;
-    z-index: 2;
+    will-change: transform, opacity;
+    z-index: 6;
     pointer-events: none;
     box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    opacity: var(--pointer-opacity, 1);
+    transition: opacity 0.3s ease;
 }
 
 .wave-content {
