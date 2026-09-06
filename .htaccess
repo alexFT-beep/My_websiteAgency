@@ -1,0 +1,75 @@
+# =====================================================================
+# MYWEBSITE - COMPREHENSIVE SECURITY & HARDENING CONFIGURATION (.htaccess)
+# =====================================================================
+
+# 1. DISABLE DIRECTORY BROWSING & HIDE SERVER SIGNATURES
+Options -Indexes -MultiViews
+ServerSignature Off
+
+# 2. ENFORCE HTTPS & SECURE CONNECTION
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 3. HTTP SECURITY HEADERS
+<IfModule mod_headers.c>
+    # Content Security Policy (CSP)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://wdirdbryxwtbnprbrkvh.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net https://wdirdbryxwtbnprbrkvh.supabase.co https://api.whatsapp.com https://wa.me; media-src 'self' https://wdirdbryxwtbnprbrkvh.supabase.co; object-src 'none'; frame-ancestors 'none';"
+
+    # HTTP Strict Transport Security (HSTS)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # Prevent MIME Snipping
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Prevent Clickjacking
+    Header always set X-Frame-Options "DENY"
+
+    # XSS Protection Filter
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions Policy (Restrict browser feature APIs)
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), display-capture=()"
+
+    # Cross Origin Embedder & Opener Policies
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+</IfModule>
+
+# 4. BLOCK DANGEROUS HTTP METHODS
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|DELETE|PUT|CONNECT|OPTIONS) [NC]
+    RewriteRule .* - [F]
+</IfModule>
+
+# 5. BLOCK KNOWN MALICIOUS USER AGENTS, BOTS & EXPLOIT SCANNERS
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|sqlmap|w3af|havij|nmap|dirbuster|censys) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (zgrab|masscan|openvas|nessus|acunetix|nessus|qualys) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# 6. BLOCK SENSITIVE FILES & DOTFILES ACCESS
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh|sql|json|md|git)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 7. MIME TYPES SECURITY & CACHING
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+</IfModule>

@@ -97,7 +97,8 @@ export function showToast(message, type = 'info', duration = 3500) {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
-    toast.innerHTML = `<span style="font-weight:bold; font-size:1.1rem; color:${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#00c3ff'}">${icon}</span> <span>${message}</span>`;
+    const safeMsg = String(message).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    toast.innerHTML = `<span style="font-weight:bold; font-size:1.1rem; color:${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#00c3ff'}">${icon}</span> <span>${safeMsg}</span>`;
     
     container.appendChild(toast);
     
@@ -249,9 +250,45 @@ function initFormValidation() {
         field.element.addEventListener('blur', validateField);
     });
 
-    // Handle Submit
+    // Anti-Spam Time-Lock timestamp initialization
+    const formInitTime = Date.now();
+
+    // Helper for sanitizing string inputs against HTML injection
+    const sanitizeInput = (str) => {
+        if (!str) return '';
+        return String(str)
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#x27;')
+            .replace(/\\/g, '')
+            .trim();
+    };
+
+    // Handle Submit with Security Hardening
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // 1. Anti-Bot Honeypot Validation
+        const hpCheck = document.getElementById('b_hp_website_check');
+        if (hpCheck && hpCheck.value && hpCheck.value.trim() !== '') {
+            console.warn('[Security] Automated bot submission detected & blocked.');
+            return;
+        }
+
+        // 2. Anti-Bot Time-Lock (minimum 1.5s interaction required)
+        if (Date.now() - formInitTime < 1500) {
+            showToast('⚠️ Solicitud procesada demasiado rápido. Por favor intenta nuevamente.', 'error');
+            return;
+        }
+
+        // 3. Client-Side Rate Limiting (Minimum 6s between requests)
+        const lastSubmit = sessionStorage.getItem('mw_last_submit_ts');
+        const now = Date.now();
+        if (lastSubmit && (now - parseInt(lastSubmit, 10)) < 6000) {
+            showToast('⚠️ Aguarda unos segundos antes de enviar otra solicitud.', 'error');
+            return;
+        }
 
         let isFormValid = true;
         Object.keys(fields).forEach(key => {
@@ -280,14 +317,15 @@ function initFormValidation() {
             return;
         }
 
+        sessionStorage.setItem('mw_last_submit_ts', now.toString());
         showToast('¡Datos validados correctamente! Redirigiendo a WhatsApp...', 'success');
 
-        const nombre = fields.nombre.element.value.trim();
-        const correo = fields.correo.element.value.trim();
-        const telefono = fields.telefono.element.value.trim();
-        const ciudad = fields.ciudad.element.value.trim();
-        const servicio = fields.servicio.element.value;
-        const descripcion = fields.descripcion.element.value.trim();
+        const nombre = sanitizeInput(fields.nombre.element.value);
+        const correo = sanitizeInput(fields.correo.element.value);
+        const telefono = sanitizeInput(fields.telefono.element.value);
+        const ciudad = sanitizeInput(fields.ciudad.element.value);
+        const servicio = sanitizeInput(fields.servicio.element.value);
+        const descripcion = sanitizeInput(fields.descripcion.element.value);
 
         const mensaje = `🚀 *NUEVA SOLICITUD DE PROYECTO — MYWEBSITE*
 
@@ -306,12 +344,12 @@ Hola equipo de *MyWebsite*, solicito información y cotización para el siguient
 "${descripcion}"
 
 ---
-_Mensaje generado automáticamente desde el formulario oficial de MyWebsite_`;
+_Mensaje generado de forma segura desde el formulario oficial de MyWebsite_`;
 
         const url = `https://api.whatsapp.com/send/?phone=51900957415&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
         
         setTimeout(() => {
-            window.open(url, '_blank');
+            window.open(url, '_blank', 'noopener,noreferrer');
         }, 800);
     });
 }
