@@ -1090,15 +1090,23 @@ a {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 290px;
+    max-width: 85vw;
     height: 100vh;
+    height: 100dvh;
     background: rgba(18, 18, 22, 0.98);
     backdrop-filter: blur(15px);
     border-left: 1px solid rgba(142, 45, 226, 0.3);
-    padding-top: 100px;
-    transition: right 0.4s ease;
+    padding: 85px 20px 25px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1000;
     box-shadow: -5px 0 30px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav.active {
@@ -1112,11 +1120,12 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .mobile-nav ul li a {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--text-pure-white);
     text-decoration: none;
@@ -1150,21 +1159,24 @@ a {
 }
 
 .mobile-nav-img-container {
-    position: absolute;
-    bottom: 35px;
+    position: relative;
+    margin-top: auto;
+    padding-top: 1.5rem;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0 20px;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .mobile-nav-img {
-    max-width: 180px;
-    width: 80%;
+    max-width: 160px;
+    width: 75%;
     height: auto;
     object-fit: contain;
     opacity: 0.95;
-    filter: drop-shadow(0 4px 15px rgba(142, 45, 226, 0.3));
+    filter: drop-shadow(0 4px 15px rgba(142, 45, 226, 0.35));
+    transition: transform 0.3s ease;
 }
 
 /* Scroll Indicator */
@@ -2990,6 +3002,11 @@ button,
 }
 
 /* RESPONSIVE TOUCH & BREAKPOINT AUDITS (320px - 768px) */
+img, video, iframe, svg {
+    max-width: 100%;
+    height: auto;
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 1rem 1.25rem;
@@ -2999,15 +3016,15 @@ button,
         min-height: 44px;
         display: flex;
         align-items: center;
-        padding: 0.5rem 0;
+        padding: 0.4rem 0;
     }
 
     .error-title {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 
     .error-card {
-        padding: 2.5rem 1.5rem;
+        padding: 2rem 1.2rem;
     }
 
     .toast-container {
@@ -3020,17 +3037,105 @@ button,
         min-width: unset;
         width: 100%;
     }
+
+    .floating-whatsapp {
+        bottom: 24px;
+        right: 24px;
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-team-switcher {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .team-switcher-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.65rem 1rem;
+        font-size: 0.88rem;
+    }
+
+    .faq-search-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .faq-search-input {
+        padding: 0.95rem 2.8rem 0.95rem 2.8rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero-title, .wave-title {
-        font-size: 2.1rem;
+    .hero-title, .wave-title, .faq-main-title {
+        font-size: 2.0rem;
+        line-height: 1.2;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .logo-img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .form-page {
+        padding: 95px 12px 35px;
+    }
+
+    .form-container {
+        padding: 1.8rem 1.1rem;
+        border-radius: 18px;
+    }
+
+    .form-container h1 {
+        font-size: 1.75rem;
+    }
+
+    .form-subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 1.2rem;
     }
 
     .custom-form input,
     .custom-form select,
     .custom-form textarea {
         font-size: 16px; /* Prevents auto-zoom on iOS safari */
+        padding: 0.85rem 1rem;
+    }
+
+    .floating-whatsapp {
+        bottom: 18px;
+        right: 18px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .floating-whatsapp svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-nav {
+        width: 100vw;
+        max-width: 100vw;
+        border-left: none;
+    }
+
+    .hero-title, .wave-title, .faq-main-title {
+        font-size: 1.75rem;
+    }
+
+    .mobile-menu-text {
+        font-size: 0.82rem;
     }
 }
 
