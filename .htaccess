@@ -1,5 +1,5 @@
 # =====================================================================
-# MYWEBSITE - COMPREHENSIVE SECURITY & HARDENING CONFIGURATION (.htaccess)
+# MYWEBSITE - PERFORMANCE, COMPRESSION & SECURITY HARDENING (.htaccess)
 # =====================================================================
 
 # 1. DISABLE DIRECTORY BROWSING & HIDE SERVER SIGNATURES
@@ -13,7 +13,12 @@ ServerSignature Off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# 3. HTTP SECURITY HEADERS
+# 3. HIGH-SPEED GZIP / DEFLATE COMPRESSION
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml font/ttf font/otf image/x-icon
+</IfModule>
+
+# 4. HTTP SECURITY HEADERS
 <IfModule mod_headers.c>
     # Content Security Policy (CSP)
     Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://wdirdbryxwtbnprbrkvh.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net https://wdirdbryxwtbnprbrkvh.supabase.co https://api.whatsapp.com https://wa.me; media-src 'self' https://wdirdbryxwtbnprbrkvh.supabase.co; object-src 'none'; frame-ancestors 'none';"
@@ -33,27 +38,27 @@ ServerSignature Off
     # Referrer Policy
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-    # Permissions Policy (Restrict browser feature APIs)
+    # Permissions Policy
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), display-capture=()"
 
-    # Cross Origin Embedder & Opener Policies
+    # Cross Origin Policies
     Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
 </IfModule>
 
-# 4. BLOCK DANGEROUS HTTP METHODS
+# 5. BLOCK DANGEROUS HTTP METHODS
 <IfModule mod_rewrite.c>
     RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|DELETE|PUT|CONNECT|OPTIONS) [NC]
     RewriteRule .* - [F]
 </IfModule>
 
-# 5. BLOCK KNOWN MALICIOUS USER AGENTS, BOTS & EXPLOIT SCANNERS
+# 6. BLOCK KNOWN MALICIOUS USER AGENTS & BOTS
 <IfModule mod_rewrite.c>
     RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|sqlmap|w3af|havij|nmap|dirbuster|censys) [NC,OR]
-    RewriteCond %{HTTP_USER_AGENT} (zgrab|masscan|openvas|nessus|acunetix|nessus|qualys) [NC]
+    RewriteCond %{HTTP_USER_AGENT} (zgrab|masscan|openvas|nessus|acunetix|qualys) [NC]
     RewriteRule .* - [F,L]
 </IfModule>
 
-# 6. BLOCK SENSITIVE FILES & DOTFILES ACCESS
+# 7. BLOCK ACCESS TO SENSITIVE FILES & DOTFILES
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
@@ -64,7 +69,7 @@ ServerSignature Off
     Deny from all
 </FilesMatch>
 
-# 7. MIME TYPES SECURITY & CACHING
+# 8. EXPIRES & AGGRESSIVE BROWSER CACHING
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
@@ -72,4 +77,6 @@ ServerSignature Off
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType media/webm "access plus 1 year"
 </IfModule>
