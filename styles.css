@@ -1462,7 +1462,8 @@ a {
 
 /* Form Progress Bar */
 .form-progress-wrapper {
-    margin-bottom: 2.2rem;
+    margin-top: 2rem;
+    margin-bottom: 0;
     width: 100%;
 }
 
