@@ -1417,13 +1417,25 @@ a {
 
 /* Form Page */
 .form-page-body {
-    background-image: linear-gradient(rgba(10, 10, 12, 0.3), rgba(10, 10, 12, 0.5)), url('https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/fondoReservas.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: var(--bg-main);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.web-threads-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
 
 .form-page {
+    position: relative;
+    z-index: 1;
     padding: 120px 20px 60px;
     min-height: 100vh;
     display: flex;
