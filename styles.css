@@ -1608,6 +1608,17 @@ a {
     overflow-x: hidden;
 }
 
+.faq-shards-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
 .faq-hero-container {
     position: relative;
     padding: 140px 20px 30px;

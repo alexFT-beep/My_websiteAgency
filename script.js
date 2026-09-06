@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalErrorHandling();
     initSkeletons();
     initWebThreadsBackground();
+    initFAQShardsBackground();
 
     // Mobile menu toggle with accessibility & body scroll lock
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -1018,6 +1019,251 @@ void main() {
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     container.addEventListener('mouseenter', onMouseEnter, { passive: true });
     container.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+    let raf = 0;
+    let isVisible = true;
+    let isPageVisible = !document.hidden;
+    const t0 = performance.now();
+
+    const loop = t => {
+        program.uniforms.iTime.value = (t - t0) * 0.001;
+        currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
+        currentMouse[1] += 0.05 * (targetMouse[1] - currentMouse[1]);
+        currentActive += 0.05 * (targetActive - currentActive);
+        program.uniforms.uMouse.value[0] = currentMouse[0];
+        program.uniforms.uMouse.value[1] = currentMouse[1];
+        program.uniforms.uMouseActive.value = currentActive;
+        renderer.render({ scene: mesh });
+        raf = requestAnimationFrame(loop);
+    };
+
+    const tryStart = () => {
+        if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
+    };
+    const tryStop = () => {
+        if (raf !== 0) {
+            cancelAnimationFrame(raf);
+            raf = 0;
+        }
+    };
+
+    const io = new IntersectionObserver(
+        ([entry]) => {
+            isVisible = entry.isIntersecting;
+            isVisible ? tryStart() : tryStop();
+        },
+        { threshold: 0 }
+    );
+    io.observe(container);
+
+    const onVisibility = () => {
+        isPageVisible = !document.hidden;
+        isPageVisible ? tryStart() : tryStop();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    tryStart();
+}
+
+// 15. AeroShards Background Component (Vanilla JS + OGL ESM)
+function initFAQShardsBackground() {
+    const container = document.getElementById('faq-shards-bg');
+    if (!container) return;
+
+    const hexToRgb = hex => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        if (!result) return [0, 0, 0];
+        return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
+    };
+
+    const options = {
+        backgroundColor: '#0A0A0C',
+        shardColor: '#8E35FF',
+        accentColor: '#A855F7',
+        highlightColor: '#896ABD',
+        speed: 0.8,
+        shardSize: 1.1
+    };
+
+    const renderer = new Renderer({
+        webgl: 2,
+        alpha: true,
+        premultipliedAlpha: true,
+        antialias: true,
+        powerPreference: 'high-performance',
+        dpr: Math.min(window.devicePixelRatio || 1, 1.5)
+    });
+
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
+    const canvas = gl.canvas;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    container.appendChild(canvas);
+
+    const geometry = new Triangle(gl);
+
+    const vertex = `#version 300 es
+in vec2 position;
+void main() {
+    gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+    const fragment = `#version 300 es
+precision highp float;
+uniform vec2 iResolution;
+uniform float iTime;
+uniform vec3 uBackgroundColor;
+uniform vec3 uShardColor;
+uniform vec3 uAccentColor;
+uniform vec3 uHighlightColor;
+uniform float uSpeed;
+uniform float uShardSize;
+uniform vec2 uMouse;
+uniform float uMouseActive;
+out vec4 fragColor;
+
+vec3 hash33(vec3 p) {
+    p = vec3( dot(p,vec3(127.1,311.7, 74.7)),
+              dot(p,vec3(269.5,183.3,246.1)),
+              dot(p,vec3(113.5,271.9,124.6)));
+    return fract(sin(p)*43758.5453123);
+}
+
+vec4 voronoiShards(vec3 p) {
+    vec3 n = floor(p);
+    vec3 f = fract(p);
+
+    float md = 8.0;
+    float md2 = 8.0;
+    vec3 mr = vec3(0.0);
+
+    for(int k=-1; k<=1; k++) {
+        for(int j=-1; j<=1; j++) {
+            for(int i=-1; i<=1; i++) {
+                vec3 g = vec3(float(i), float(j), float(k));
+                vec3 o = hash33(n + g);
+                o = 0.5 + 0.45 * sin(iTime * uSpeed * 0.7 + 6.2831 * o);
+                vec3 r = g + o - f;
+                float d = dot(r, r);
+
+                if(d < md) {
+                    md2 = md;
+                    md = d;
+                    mr = r;
+                } else if(d < md2) {
+                    md2 = d;
+                }
+            }
+        }
+    }
+
+    float edge = md2 - md;
+    return vec4(mr, edge);
+}
+
+void main() {
+    vec2 st = (gl_FragCoord.xy - 0.5 * iResolution.xy) / min(iResolution.x, iResolution.y);
+    
+    vec2 mouseOffset = (uMouse - 0.5) * 0.3 * uMouseActive;
+    st -= mouseOffset;
+
+    vec3 rayPos = vec3(st * 3.2 / uShardSize, iTime * 0.15 * uSpeed);
+
+    float angle = iTime * 0.04;
+    mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+    rayPos.xy = rot * rayPos.xy;
+
+    vec4 shardData = voronoiShards(rayPos);
+    vec3 cellPos = shardData.xyz;
+    float edge = shardData.w;
+
+    vec3 norm = normalize(cellPos + vec3(0.001));
+    vec3 lightDir = normalize(vec3(0.5, 0.8, -0.6));
+    float diff = max(dot(norm, lightDir), 0.0);
+    
+    vec3 viewDir = vec3(0.0, 0.0, -1.0);
+    vec3 halfDir = normalize(lightDir + viewDir);
+    float spec = pow(max(dot(norm, halfDir), 0.0), 24.0);
+
+    float edgeGlow = smoothstep(0.0, 0.22, edge);
+    float sharpLines = 1.0 - smoothstep(0.015, 0.06, edge);
+
+    float colorMix = 0.5 + 0.5 * sin(cellPos.x * 3.0 + cellPos.y * 2.0 + iTime * 0.5);
+    vec3 shardBase = mix(uShardColor, uAccentColor, colorMix);
+    
+    vec3 finalColor = shardBase * (0.2 + 0.7 * diff) + uHighlightColor * spec * 0.8;
+    finalColor += uAccentColor * sharpLines * 1.4;
+
+    float distToCenter = length(st);
+    float bgFade = smoothstep(1.3, 0.2, distToCenter);
+    
+    vec3 col = mix(uBackgroundColor, finalColor, edgeGlow * bgFade * 0.7);
+
+    fragColor = vec4(col, 1.0);
+}
+`;
+
+    const bgRgb = hexToRgb(options.backgroundColor);
+    const shardRgb = hexToRgb(options.shardColor);
+    const accentRgb = hexToRgb(options.accentColor);
+    const highlightRgb = hexToRgb(options.highlightColor);
+
+    const program = new Program(gl, {
+        vertex,
+        fragment,
+        uniforms: {
+            iTime: { value: 0 },
+            iResolution: { value: new Float32Array([1, 1]) },
+            uBackgroundColor: { value: new Float32Array(bgRgb) },
+            uShardColor: { value: new Float32Array(shardRgb) },
+            uAccentColor: { value: new Float32Array(accentRgb) },
+            uHighlightColor: { value: new Float32Array(highlightRgb) },
+            uSpeed: { value: options.speed },
+            uShardSize: { value: options.shardSize },
+            uMouse: { value: new Float32Array([0.5, 0.5]) },
+            uMouseActive: { value: 0 }
+        }
+    });
+
+    const mesh = new Mesh(gl, { geometry, program });
+
+    const setSize = () => {
+        const rect = container.getBoundingClientRect();
+        const w = Math.max(1, Math.floor(rect.width));
+        const h = Math.max(1, Math.floor(rect.height));
+        renderer.setSize(w, h);
+        const res = program.uniforms.iResolution.value;
+        res[0] = gl.drawingBufferWidth;
+        res[1] = gl.drawingBufferHeight;
+        renderer.render({ scene: mesh });
+    };
+
+    const ro = new ResizeObserver(setSize);
+    ro.observe(container);
+    setSize();
+
+    const currentMouse = [0.5, 0.5];
+    const targetMouse = [0.5, 0.5];
+    let currentActive = 0;
+    let targetActive = 0;
+
+    const onMouseMove = e => {
+        targetMouse[0] = e.clientX / window.innerWidth;
+        targetMouse[1] = 1.0 - (e.clientY / window.innerHeight);
+        targetActive = 1;
+    };
+    const onMouseEnter = () => { targetActive = 1; };
+    const onMouseLeave = () => { targetActive = 0; };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mouseenter', onMouseEnter, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
     let raf = 0;
     let isVisible = true;
