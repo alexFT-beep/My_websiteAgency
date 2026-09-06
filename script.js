@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const menuText = mobileMenuToggle.querySelector('.mobile-menu-text');
             if (menuText) {
-                menuText.innerHTML = isActive ? 'Cerrar' : 'Ver menú <span class="mobile-arrow">→</span>';
+                menuText.innerHTML = isActive ? 'Cerrar' : 'Ver más <span class="mobile-arrow">→</span>';
             }
         };
 

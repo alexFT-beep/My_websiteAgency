@@ -1035,6 +1035,9 @@ a {
 .mobile-arrow {
     animation: bounce-x 1.5s infinite;
     display: inline-block;
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+    margin-left: 2px;
 }
 
 @keyframes bounce-x {
