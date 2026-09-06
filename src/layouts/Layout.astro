@@ -1,0 +1,133 @@
+---
+import '../styles/styles.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Alberto Tejada - MyWebsite | Agencia de Inteligencia Artificial",
+	description = "MyWebsite es una agencia líder en soluciones de Inteligencia Artificial para empresas del futuro."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://wdirdbryxwtbnprbrkvh.supabase.co" crossorigin>
+    <link rel="dns-prefetch" href="https://wdirdbryxwtbnprbrkvh.supabase.co">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/simplex-noise@4.0.1/dist/esm/simplex-noise.js">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="glass-header" id="main-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/logo%20principal.webp"
+                    alt="Logo Principal" class="logo-img" fetchpriority="high" decoding="async" width="40" height="40">
+                <span class="logo-text">My<span class="text-accent">Website</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/#inicio" class="nav-inicio">Inicio</a></li>
+                <li><a href="/#contacto" class="underline-link">Contacto</a></li>
+                <li><a href="/servicios" class="pulse-link">Servicio</a></li>
+                <li><a href="/nosotros">Nosotros</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/formulario" class="btn-primary">Empezar Ahora</a></li>
+            </ul>
+
+            <button class="mobile-menu-toggle" aria-label="Abrir menú de navegación">
+                <span class="mobile-menu-text">Ver menú <span class="mobile-arrow">→</span></span>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </nav>
+
+        <div class="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="/#inicio">Inicio</a></li>
+                <li><a href="/#contacto">Contacto</a></li>
+                <li><a href="/servicios">Servicio</a></li>
+                <li><a href="/nosotros">Nosotros</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/formulario" class="btn-primary mobile-btn">Empezar Ahora</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="/" class="logo footer-logo">
+                    <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/LogoHechado.webp"
+                        alt="Logo MyWebsite" class="footer-logo-img" loading="lazy" width="160" height="40">
+                </a>
+                <p class="footer-description">
+                    Transformamos negocios a través de soluciones de Inteligencia Artificial avanzadas, desarrollo web de alto impacto y automatización inteligente.
+                </p>
+                <div class="footer-socials">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon"><i class="devicon-linkedin-plain"></i></a>
+                    <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon"><i class="devicon-github-original"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="/#inicio">Inicio</a></li>
+                    <li><a href="/servicios">Servicios</a></li>
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li><a href="/soluciones">Soluciones IA</a></li>
+                    <li><a href="/faq">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="/politica">Política de Privacidad</a></li>
+                    <li><a href="/terminos">Términos de Servicio</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contacto</h4>
+                <p class="footer-contact-item">📧 info@mywebsite.com</p>
+                <p class="footer-contact-item">📍 Lima, Perú</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MyWebsite. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+
+</html>
