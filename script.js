@@ -181,6 +181,35 @@ function initFormValidation() {
         }
     };
 
+    // Form Progress Bar updates
+    const progressFill = document.getElementById('form-progress-fill');
+    const progressText = document.getElementById('form-progress-text');
+
+    const updateFormProgress = () => {
+        if (!progressFill || !progressText) return;
+        let filledCount = 0;
+        const totalKeys = Object.keys(fields);
+        const total = totalKeys.length;
+
+        totalKeys.forEach(key => {
+            const el = fields[key].element;
+            if (el) {
+                const val = el.value ? el.value.trim() : '';
+                if (val.length > 0) {
+                    filledCount++;
+                }
+            }
+        });
+
+        const percentage = Math.round((filledCount / total) * 100);
+        progressFill.style.width = `${percentage}%`;
+        progressText.textContent = `${percentage}%`;
+    };
+
+    updateFormProgress();
+    form.addEventListener('input', updateFormProgress);
+    form.addEventListener('change', updateFormProgress);
+
     // Attach real-time validation events to each input field
     Object.keys(fields).forEach(key => {
         const field = fields[key];
@@ -827,8 +856,8 @@ void main() {
 `;
 
     const options = {
-        color1: '#8E2DE2',
-        color2: '#FF9FFC',
+        color1: '#8E35FF',
+        color2: '#C084FC',
         color3: '#FFFFFF',
         speed: 0.2,
         threadCount: 6,
