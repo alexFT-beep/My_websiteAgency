@@ -1,5 +1,13 @@
 import { createNoise2D } from 'https://cdn.jsdelivr.net/npm/simplex-noise@4.0.1/dist/esm/simplex-noise.js';
 
+// Hide preloader on page load
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.classList.add('hidden');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('main-header');
 
@@ -528,19 +536,6 @@ function initWaves() {
         mouse.x = x - bounding.left;
         mouse.y = y - bounding.top;
 
-        const isInside = (
-            mouse.x >= 0 &&
-            mouse.x <= bounding.width &&
-            mouse.y >= 0 &&
-            mouse.y <= bounding.height
-        );
-
-        if (isInside) {
-            container.style.setProperty('--pointer-opacity', '1');
-        } else {
-            container.style.setProperty('--pointer-opacity', '0');
-        }
-
         if (!mouse.set) {
             mouse.sx = mouse.x; mouse.sy = mouse.y;
             mouse.lx = mouse.x; mouse.ly = mouse.y;
@@ -685,12 +680,6 @@ function initWaves() {
     window.addEventListener('scroll', () => {
         if (container) {
             bounding = container.getBoundingClientRect();
-        }
-    }, { passive: true });
-
-    document.addEventListener('mouseleave', () => {
-        if (container) {
-            container.style.setProperty('--pointer-opacity', '0');
         }
     }, { passive: true });
 
