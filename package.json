@@ -3,9 +3,6 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": "22.x"
-  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -14,17 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^7.8.2",
     "astro": "^4.16.18",
     "ogl": "^1.0.11",
     "simplex-noise": "^4.0.1"
-  },
-  "onlyBuiltDependencies": [
-    "esbuild",
-    "sharp"
-  ],
-  "allowScripts": [
-    "esbuild",
-    "sharp"
-  ]
+  }
 }
