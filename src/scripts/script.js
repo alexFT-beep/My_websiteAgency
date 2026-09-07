@@ -407,7 +407,7 @@ Hola equipo de *MyWebsite*, solicito información y cotización para el siguient
 ---
 _Mensaje generado de forma segura desde el formulario oficial de MyWebsite_`;
 
-        const url = `https://api.whatsapp.com/send/?phone=51900957415&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+        const url = `https://api.whatsapp.com/send/?phone=51927374565&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
         
         setTimeout(() => {
             window.open(url, '_blank', 'noopener,noreferrer');
