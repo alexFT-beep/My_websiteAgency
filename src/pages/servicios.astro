@@ -3,9 +3,23 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Nuestras Soluciones & Servicios — MyWebsite" description="Implementamos tecnología de punta para resolver los desafíos más complejos de tu negocio.">
+    <!-- Video de fondo animado (Desktop & Mobile) -->
+    <div class="soluciones-bg-container">
+        <video class="soluciones-bg-video-desktop" autoplay loop muted playsinline preload="metadata">
+            <source
+                src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/laptophechado.webm"
+                type="video/webm">
+        </video>
+        <video class="soluciones-bg-video-mobile" autoplay loop muted playsinline preload="metadata">
+            <source
+                src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/laptopvertcal.webm"
+                type="video/webm">
+        </video>
+    </div>
+
     <div style="padding-top: 60px;">
         <section id="servicios" class="services" style="padding-top: 4rem;">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <h2>Nuestras <span class="text-accent glow">Soluciones & Servicios</span></h2>
                 <p>Implementamos tecnología de punta para resolver los desafíos más complejos de tu negocio.</p>
                 <div class="animated-link-container" style="margin-top: 2rem;">
@@ -17,7 +31,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="services-layout">
                 <div class="services-content-wrapper">
                     <div class="services-grid">
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll">
                             <div class="icon">💬</div>
                             <h3>ChatBots IA WhatsApp</h3>
                             <p>Un asistente inteligente activo 24/7 que atiende a tus clientes con lenguaje natural y
@@ -25,7 +39,7 @@ import Layout from '../layouts/Layout.astro';
                                 datos en tu
                                 sistema automáticamente, cerrando ventas mientras tú descansas.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-100">
                             <div class="icon">🌐</div>
                             <h3>Desarrollo Web de Élite</h3>
                             <p>De alto impacto optimizadas para posicionarte en Google, captar clientes y multiplicar
@@ -33,7 +47,7 @@ import Layout from '../layouts/Layout.astro';
                                 en
                                 ingresos constantes para tu negocio 24/7.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-200">
                             <div class="icon">📊</div>
                             <h3>Sistemas de Gestión de Inventarios con Análisis Predictivo</h3>
                             <p>Registra entradas y salidas para prever la demanda según la temporada. Calcula tu stock
@@ -41,21 +55,21 @@ import Layout from '../layouts/Layout.astro';
                                 no
                                 quedarte nunca en cero.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-100">
                             <div class="icon">📋</div>
                             <h3>Sistema de Comandas Digitales</h3>
                             <p>Reemplaza los blocs de papel por una aplicación móvil para tus meseros. Al tomar el
                                 pedido en la mesa, la orden viaja al instante a la cocina: todo queda registrado en
                                 caja.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-200">
                             <div class="icon">📈</div>
                             <h3>Agentes IA en Instagram & Facebook</h3>
                             <p>Transforma tus redes sociales en máquinas de ventas automáticas 24/7. Nuestros agentes
                                 inteligentes no solo responden mensajes, sino que califican prospectos y cierran citas
                                 en tiempo real sin intervención humana para convertir personas en clientes fieles.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-300">
                             <div class="icon">📖</div>
                             <h3>Carta digital interactiva</h3>
                             <p>La Carta Digital Interactiva transforma el menú de tu restaurante en una experiencia
@@ -63,7 +77,7 @@ import Layout from '../layouts/Layout.astro';
                                 web responsivo. Es la opción ideal para optimizar la atención al cliente, destacar tus
                                 platos principales o pedir deliverys de manera interactiva.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-100">
                             <div class="icon">📲</div>
                             <h3>Aplicaciones Móviles</h3>
                             <p>Desarrollamos aplicaciones móviles nativas y multiplataforma diseñadas para conectar tu
@@ -73,7 +87,7 @@ import Layout from '../layouts/Layout.astro';
                                 tus
                                 clientes y llevan tus servicios directamente a la palma de su mano.</p>
                         </div>
-                        <div class="service-card glassmorphism">
+                        <div class="service-card glassmorphism reveal-on-scroll delay-200">
                             <div class="icon">⚙️</div>
                             <h3>Software Personalizado</h3>
                             <p>Creamos software a medida enfocado exclusivamente en resolver los cuellos de botella y
@@ -83,16 +97,16 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                     </div>
                 </div>
-                <div class="services-image">
+                <div class="services-image reveal-on-scroll delay-300">
                     <div style="position: relative; display: inline-block;">
                         <div class="speech-bubble">Miau!</div>
                         <img src="https://wdirdbryxwtbnprbrkvh.supabase.co/storage/v1/object/public/Agencia_myWebsite/poder3.webp"
-                            alt="Poder IA" class="floating">
+                            alt="Poder IA" class="floating" width="280" height="280" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 4rem;">
+            <div style="text-align: center; margin-top: 4rem;" class="reveal-on-scroll">
                 <a href="/soluciones" class="btn-primary"
                     style="font-size: 1.15rem; padding: 1rem 2.5rem; display: inline-flex; align-items: center; gap: 10px;">
                     ¿Me conviene para mi negocio? Saber más <span style="font-size: 1.3rem;">→</span>
