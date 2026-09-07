@@ -10,6 +10,17 @@ import Layout from '../layouts/Layout.astro';
             <p class="form-subtitle">Completa el formulario y nos pondremos en contacto contigo por WhatsApp a la
                 brevedad.</p>
 
+            <!-- Form Progress Bar -->
+            <div class="form-progress-wrapper">
+                <div class="form-progress-info">
+                    <span class="form-progress-label">Progreso del formulario</span>
+                    <span id="form-progress-text" class="form-progress-text">0%</span>
+                </div>
+                <div class="form-progress-bar">
+                    <div id="form-progress-fill" class="form-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
             <form id="project-form" class="custom-form">
                 <div class="form-group">
                     <label for="nombre">Nombres y Apellidos</label>
