@@ -14,5 +14,9 @@
     "astro": "^4.16.18",
     "ogl": "^1.0.11",
     "simplex-noise": "^4.0.1"
-  }
+  },
+  "onlyBuiltDependencies": [
+    "esbuild",
+    "sharp"
+  ]
 }
