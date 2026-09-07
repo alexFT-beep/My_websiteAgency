@@ -18,5 +18,9 @@
   "onlyBuiltDependencies": [
     "esbuild",
     "sharp"
+  ],
+  "allowScripts": [
+    "esbuild",
+    "sharp"
   ]
 }
