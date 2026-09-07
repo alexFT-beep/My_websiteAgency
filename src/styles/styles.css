@@ -2565,6 +2565,13 @@ a {
         width: 22px;
         height: 22px;
     }
+
+    .ramses-contact-section {
+        flex-direction: column !important;
+        gap: 1.2rem !important;
+        width: 100%;
+        align-items: center !important;
+    }
 }
 
 /* Form Page Footer & Side Image Styling */
